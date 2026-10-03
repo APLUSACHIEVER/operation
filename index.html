@@ -47,7 +47,7 @@ main{max-width:1250px;margin:0 auto;padding:24px}.tabs{display:flex;gap:8px;marg
 
 <section id="teachers" class="page"><div class="panel"><h2>老师</h2><div class="toolbar"><button class="primary" onclick="openTeacher()">＋ 新增老师</button></div><div id="teacherList"></div></div></section><section id="subjects" class="page"><div class="panel"><h2>科目</h2><div class="toolbar"><button class="primary" onclick="openSubject()">＋ 新增科目</button></div><div id="subjectList"></div></div></section><section id="courses" class="page"><div class="panel"><h2>课程与课时包</h2><div class="toolbar"><button class="primary" onclick="openCourse()">＋ 新增课程</button></div><div class="cards" id="courseCards"></div></div></section>
 
-<section id="fees" class="page"><div class="panel"><h2>费用</h2><div class="grid" style="grid-template-columns:repeat(3,1fr)"><div class="stat"><span>学生收费</span><b id="fIncome">S$0</b></div><div class="stat"><span>老师费用</span><b id="fTeacher">S$0</b></div><div class="stat"><span>课程差额</span><b id="fMargin">S$0</b></div></div><div style="overflow:auto;margin-top:16px"><table class="table"><thead><tr><th>课程</th><th>学生</th><th>老师</th><th>科目</th><th>课时包</th><th>学生收费</th><th>老师费用</th><th>差额</th></tr></thead><tbody id="feeBody"></tbody></table></div></div></section>
+<section id="fees" class="page"><div class="panel"><h2>费用</h2><div class="grid" style="grid-template-columns:repeat(3,1fr)"><div class="stat"><span>学生收费</span><b id="fIncome">S$0</b></div><div class="stat"><span>老师费用</span><b id="fTeacher">S$0</b></div><div class="stat"><span>课程差额</span><b id="fMargin">S$0</b></div></div><div style="overflow:auto;margin-top:16px"><table class="table"><thead><tr><th>课程</th><th>学生</th><th>老师</th><th>科目</th><th>课时包</th><th>学生收费</th><th>老师费用</th><th>差额</th></tr></thead><tbody id="feeBody"></tbody></table></div></div><div class="panel" style="margin-top:16px"><h2>老师结算明细</h2><div class="toolbar"><select id="settleTeacher" onchange="renderTeacherSettlement()"><option value="">全部老师</option></select><select id="settleCourse" onchange="renderTeacherSettlement()"><option value="">全部课程</option></select><input type="date" id="settleStart" onchange="renderTeacherSettlement()"><input type="date" id="settleEnd" onchange="renderTeacherSettlement()"><button onclick="setSettlementRange(0)">本月</button><button onclick="setSettlementRange(1)">上月</button><button class="primary" onclick="printTeacherSettlement()">打印结算明细</button></div><div id="settlementSummary" style="margin:10px 0"></div><div style="overflow:auto"><table class="table"><thead><tr><th>日期</th><th>课程</th><th>科目</th><th>学生</th><th>实际出席</th><th>老师 Rate</th><th>本节费用</th></tr></thead><tbody id="settlementBody"></tbody></table></div></div></section>
 </main>
 
 <div class="modal" id="courseModal"><div class="box"><h2 id="courseModalTitle">新增课程</h2><div class="form">
@@ -321,8 +321,65 @@ saveCourse=function(){
 }
 const opOldEditCourse2=editCourse;
 editCourse=function(id){opOldEditCourse2(id);let c=opNormalize(db.courses.find(x=>x.id===id));opMemberList(c);setTimeout(()=>{let b=document.querySelector('#courseModal .actions');if(b&&!b.querySelector('.memberBtn')){let x=document.createElement('button');x.className='memberBtn';x.textContent='学生成员管理';x.onclick=()=>{closeModal('courseModal');opMemberManager(id)};b.insertBefore(x,b.firstChild)}},0)}
-render();
 
+/* 老师结算明细：只读取已经完成的实际课次，可按老师、课程和实际日期区间筛选 */
+function settlementLessons(){
+ let out=[];
+ db.courses.forEach(c=>{
+  opNormalize(c);
+  c.dates.forEach(date=>{
+   if(c.status[date]==='已上'){
+    let active=opMemberIds(c,date),att=opAttendanceForDate(c,date),rate=opLessonRate(c,date);
+    out.push({date,c,active,att,rate,cost:rate});
+   }
+  });
+ });
+ return out.sort((a,b)=>(a.date+a.c.time).localeCompare(b.date+b.c.time));
+}
+function settlementDateDefaults(){
+ let now=new Date(),y=now.getFullYear(),m=now.getMonth();
+ return {start:new Date(y,m,1).toISOString().slice(0,10),end:new Date(y,m+1,0).toISOString().slice(0,10)};
+}
+function setSettlementRange(type){
+ let now=new Date(),y=now.getFullYear(),m=now.getMonth(),start,end;
+ if(type===1){start=new Date(y,m-1,1);end=new Date(y,m,0)}else{start=new Date(y,m,1);end=new Date(y,m+1,0)}
+ $('settleStart').value=start.toISOString().slice(0,10);
+ $('settleEnd').value=end.toISOString().slice(0,10);
+ renderTeacherSettlement();
+}
+function settlementInit(){
+ let d=settlementDateDefaults();
+ if(!$('settleStart').value)$('settleStart').value=d.start;
+ if(!$('settleEnd').value)$('settleEnd').value=d.end;
+ let tv=$('settleTeacher').value,cv=$('settleCourse').value;
+ $('settleTeacher').innerHTML='<option value="">全部老师</option>'+db.teachers.map(t=>'<option value="'+t.id+'">'+esc(t.name)+'</option>').join('');
+ $('settleTeacher').value=tv;
+ let filteredCourses=db.courses.filter(c=>!$('settleTeacher').value||c.teacher===$('settleTeacher').value);
+ $('settleCourse').innerHTML='<option value="">全部课程</option>'+filteredCourses.map(c=>'<option value="'+c.id+'">'+esc(c.name)+'</option>').join('');
+ $('settleCourse').value=filteredCourses.some(c=>c.id===cv)?cv:'';
+}
+function renderTeacherSettlement(){
+ if(!$('settlementBody'))return;
+ settlementInit();
+ let start=$('settleStart').value,end=$('settleEnd').value,teacher=$('settleTeacher').value,course=$('settleCourse').value;
+ let rows=settlementLessons().filter(x=>(!start||x.date>=start)&&(!end||x.date<=end)&&(!teacher||x.c.teacher===teacher)&&(!course||x.c.id===course));
+ let total=rows.reduce((s,x)=>s+x.cost,0);
+ $('settlementSummary').innerHTML='<b>结算期间：</b>'+(start||'不限')+' ～ '+(end||'不限')+'　 <b>实际已上：</b>'+rows.length+' 节　 <b>老师费用：</b><span class="money">'+money(total)+'</span>';
+ $('settlementBody').innerHTML=rows.length?rows.map(x=>'<tr><td>'+esc(x.date)+'</td><td>'+esc(x.c.name)+'</td><td>'+esc(subjectName(x.c.subject))+'</td><td>'+esc(opHistoryStudents(x.c,x.date))+'</td><td>'+x.att.length+' 人</td><td>'+money(x.rate)+'</td><td class="money">'+money(x.cost)+'</td></tr>').join(''):'<tr><td colspan="7" class="empty">这个日期范围内没有已完成的实际课次</td></tr>';
+}
+function printTeacherSettlement(){
+ renderTeacherSettlement();
+ let teacher=$('settleTeacher').value?teacherName($('settleTeacher').value):'全部老师';
+ let start=$('settleStart').value,end=$('settleEnd').value;
+ let rows=settlementLessons().filter(x=>(!start||x.date>=start)&&(!end||x.date<=end)&&(!teacher||x.c.teacher===$('settleTeacher').value)&&(!$('settleCourse').value||x.c.id===$('settleCourse').value));
+ let total=rows.reduce((s,x)=>s+x.cost,0);
+ let html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>老师结算明细</title><style>body{font-family:Arial,"Microsoft YaHei",sans-serif;padding:30px;color:#172033}h1{font-size:22px}p{color:#555}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{border-bottom:1px solid #ddd;padding:9px;text-align:left}th{background:#f5f7fa}.total{font-size:18px;font-weight:700;margin-top:20px}</style></head><body><h1>APLUS ACHIEVER 老师结算明细</h1><p>老师：'+esc(teacher)+'　｜　期间：'+esc(start||'不限')+' ～ '+esc(end||'不限')+'</p><table><thead><tr><th>日期</th><th>课程</th><th>科目</th><th>学生</th><th>实际出席</th><th>老师 Rate</th><th>本节费用</th></tr></thead><tbody>'+rows.map(x=>'<tr><td>'+esc(x.date)+'</td><td>'+esc(x.c.name)+'</td><td>'+esc(subjectName(x.c.subject))+'</td><td>'+esc(opHistoryStudents(x.c,x.date))+'</td><td>'+x.att.length+' 人</td><td>'+money(x.rate)+'</td><td>'+money(x.cost)+'</td></tr>').join('')+'</tbody></table><div class="total">实际已上：'+rows.length+' 节　｜　老师费用合计：'+money(total)+'</div><script>window.onload=function(){window.print()}<\/script></body></html>';
+ let w=window.open('','_blank');if(!w){alert('浏览器阻止了弹窗，请允许本网站打开新窗口后再试。');return}w.document.write(html);w.document.close();
+}
+const opRenderWithSettlement=render;
+render=function(){opRenderWithSettlement();renderTeacherSettlement();};
+renderTeacherSettlement();
+render();
 
 </script>
 </body></html>
