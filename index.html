@@ -57,6 +57,7 @@ main{max-width:1250px;margin:0 auto;padding:24px}.tabs{display:flex;gap:8px;marg
 <div class="field"><label>Zoom</label><input id="cZoom" placeholder="例如 Zoom 1"></div>
 <div class="field"><label>开始日期</label><input type="date" id="cStart"></div>
 <div class="field"><label>结束日期</label><input type="date" id="cEnd"></div>
+<div class="field full"><label>每周上课日</label><div style="display:flex;gap:12px;flex-wrap:wrap"><label><input type="checkbox" name="weekday" value="1"> 周一</label><label><input type="checkbox" name="weekday" value="2"> 周二</label><label><input type="checkbox" name="weekday" value="3"> 周三</label><label><input type="checkbox" name="weekday" value="4"> 周四</label><label><input type="checkbox" name="weekday" value="5"> 周五</label><label><input type="checkbox" name="weekday" value="6"> 周六</label><label><input type="checkbox" name="weekday" value="0"> 周日</label></div></div>
 <div class="field"><label>上课时间</label><input type="time" id="cTime" value="16:00"></div>
 <div class="field"><label>结束时间</label><input type="time" id="cEndTime" value="17:30"></div>
 <div class="field"><label>课时包</label><input type="number" id="cTotal" min="1" value="10"></div>
@@ -77,11 +78,11 @@ const money=n=>'S$'+Number(n||0).toLocaleString('en-SG',{minimumFractionDigits:0
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const today=()=>new Date().toISOString().slice(0,10);
 function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
-function datesBetween(a,b){let out=[],d=new Date(a+'T00:00:00'),e=new Date(b+'T00:00:00');while(d<=e){let x=d.toISOString().slice(0,10);let day=d.getDay();if(day!==0&&day!==6)out.push(x);d.setDate(d.getDate()+1)}return out.length?out:[a]}
+function datesBetween(a,b,days){let out=[],d=new Date(a+'T00:00:00'),e=new Date(b+'T00:00:00'),want=(days||[]).map(Number);while(d<=e){if(want.includes(d.getDay()))out.push(d.toISOString().slice(0,10));d.setDate(d.getDate()+1)}return out.length?out:[a]}
 function sessions(c){return c.dates.map(d=>({date:d,status:c.status[d]||'未上'}))}
 function completed(c){return c.dates.filter(d=>c.status[d]==='已上').length}
 function remaining(c){return Math.max(0,c.total-completed(c))}
-function openCourse(){if(!db.students.length){alert('请先新增学生');openStudent();return}fillStudents();$('courseModal').classList.add('show');}
+function openCourse(){if(!db.students.length){alert('请先新增学生');openStudent();return}fillStudents();$('cStart').value=today();$('cEnd').value=today();document.querySelectorAll('input[name="weekday"]').forEach(x=>x.checked=false);document.querySelector('input[name="weekday"][value="'+new Date().getDay()+'"]').checked=true;$('courseModal').classList.add('show');}
 function openStudent(){$('stuName').value='';$('studentModal').classList.add('show')}
 function closeModal(id){$(id).classList.remove('show')}
 function fillStudents(){$('cStu').innerHTML=db.students.map(s=>'<option value="'+s.id+'">'+esc(s.name)+'</option>').join('')}
@@ -89,9 +90,10 @@ function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&l
 function saveStudent(){let name=$('stuName').value.trim();if(!name)return;db.students.push({id:uid(),name});closeModal('studentModal');save()}
 function saveCourse(){
  let stu=$('cStu').value,name=$('cName').value.trim(),teacher=$('cTeacher').value.trim(),zoom=$('cZoom').value.trim(),start=$('cStart').value||today(),end=$('cEnd').value||start,time=$('cTime').value,endTime=$('cEndTime').value,total=+($('cTotal').value||1),fee=+($('cFee').value||0),teacherFee=+($('cTeacherFee').value||0);
- if(!name||!teacher){alert('请填写课程名称和老师');return}
- let ds=datesBetween(start,end);if(ds.length>total)ds=ds.slice(0,total);
- db.courses.push({id:uid(),stu,name,teacher,zoom,start,end,time,endTime,total,fee,teacherFee,note:$('cNote').value.trim(),dates:ds,status:{}});
+ let days=[...document.querySelectorAll('input[name="weekday"]:checked')].map(x=>+x.value);if(!days.length)days=[new Date(start+'T00:00:00').getDay()];
+ if(!name||!teacher){alert('请填写课程名称和老师');return} if(end<start){alert('结束日期不能早于开始日期');return}
+ let ds=datesBetween(start,end,days);if(ds.length>total)ds=ds.slice(0,total);
+ db.courses.push({id:uid(),stu,name,teacher,zoom,start,end,days,time,endTime,total,fee,teacherFee,note:$('cNote').value.trim(),dates:ds,status:{}});
  closeModal('courseModal');save();
 }
 function mark(id,date){let c=db.courses.find(x=>x.id===id);if(!c)return;c.status[date]=c.status[date]==='已上'?'未上':'已上';save()}
