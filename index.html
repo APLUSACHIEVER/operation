@@ -5,28 +5,28 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>APLUS ACHIEVER 运营中心</title>
 <style>
-:root{--bg:#f5f7fa;--card:#fff;--text:#172033;--muted:#718096;--line:#e7ebf0;--blue:#2563eb;--green:#16a34a;--red:#dc2626;--amber:#d97706}
+:root{--bg:#f5f7fa;--card:#fff;--text:#172033;--muted:#718096;--line:#e5e9ef;--blue:#2563eb;--green:#16a34a;--red:#dc2626;--amber:#d97706}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Microsoft YaHei",sans-serif}
-header{background:#fff;border-bottom:1px solid var(--line);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:sticky;top:0;z-index:5}
-.brand{display:flex;align-items:center;gap:14px}.logo{font-weight:800;letter-spacing:.5px;color:#1f7a4d;font-size:20px}.brand h1{font-size:20px;margin:0}.brand small{display:block;color:var(--muted);margin-top:3px}
-nav{display:flex;gap:8px;flex-wrap:wrap}button{border:0;border-radius:9px;padding:10px 14px;background:#eef2f7;color:var(--text);cursor:pointer;font-size:14px}button.primary{background:var(--blue);color:#fff}button.danger{background:#fee2e2;color:#991b1b}
-main{max-width:1250px;margin:0 auto;padding:24px}.tabs{display:flex;gap:8px;margin-bottom:20px}.tab.active{background:var(--text);color:#fff}
-.page{display:none}.page.active{display:block}
-.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}.stat b{font-size:27px;display:block;margin:6px 0}.stat span{color:var(--muted);font-size:13px}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:16px;padding:18px}.panel h2{font-size:16px;margin:0 0 14px}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.daynav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.daytitle{font-size:20px;font-weight:800;text-align:center}.daytitle small{display:block;font-size:12px;color:var(--muted);font-weight:400;margin-top:3px}.scheduleCards{display:flex;flex-direction:column;gap:10px}.lesson{display:grid;grid-template-columns:90px 1fr auto;gap:16px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff}.lesson.done{background:#f0fdf4;border-color:#bbf7d0}.lessonTime{font-weight:800;font-size:17px}.lessonMain b{font-size:15px}.lessonMain p{margin:5px 0 0;color:var(--muted);font-size:13px}.lessonAction{min-width:88px}.lessonAction.doneBtn{background:var(--green);color:#fff}.progress{height:7px;background:#edf0f4;border-radius:99px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;background:var(--blue)}input,select{border:1px solid #d9dee7;border-radius:8px;padding:10px;background:#fff;color:var(--text);min-width:120px}
-.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line);font-size:14px}.table th{color:var(--muted);font-weight:500}.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#eef2ff;font-size:12px}.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.course{border:1px solid var(--line);border-radius:12px;padding:14px}.course h3{margin:0 0 8px;font-size:15px}.course p{margin:5px 0;color:var(--muted);font-size:13px}.money{font-weight:700}
-.empty{text-align:center;color:var(--muted);padding:35px}
-.modal{position:fixed;inset:0;background:#0006;display:none;align-items:center;justify-content:center;z-index:10;padding:18px}.modal.show{display:flex}.box{background:#fff;width:min(720px,100%);max-height:90vh;overflow:auto;border-radius:16px;padding:22px}.box h2{margin-top:0}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:13px;color:var(--muted)}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
-@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){header{padding:14px 16px;align-items:flex-start}.grid,.cards,.form{grid-template-columns:1fr 1fr}main{padding:16px}.table{min-width:760px}.panel{overflow:auto}.lesson{grid-template-columns:72px 1fr}.lessonAction{grid-column:2;width:100%}.daytitle{font-size:16px}}
+header{background:#fff;border-bottom:1px solid var(--line);padding:16px 26px;display:flex;align-items:center;justify-content:space-between;gap:18px;position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:12px}.logo{font-weight:800;color:#187548;font-size:19px}.brand h1{margin:0;font-size:20px}.brand small{color:var(--muted)}
+nav{display:flex;gap:7px;flex-wrap:wrap}button{border:0;border-radius:8px;padding:9px 13px;background:#eef2f7;color:var(--text);cursor:pointer}button:hover{filter:brightness(.97)}button.primary{background:var(--blue);color:#fff}button.success{background:var(--green);color:#fff}button.danger{background:#fee2e2;color:#991b1b}
+main{max-width:1280px;margin:auto;padding:22px}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}.tab.active{background:var(--text);color:#fff}.page{display:none}.page.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:11px}.stat,.panel,.card{background:var(--card);border:1px solid var(--line);border-radius:14px}.stat{padding:15px}.stat span{font-size:13px;color:var(--muted)}.stat b{display:block;font-size:25px;margin-top:6px}.panel{padding:18px;margin-bottom:16px}.panel h2{font-size:16px;margin:0 0 14px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}
+input,select{border:1px solid #d7dce5;border-radius:8px;padding:9px 10px;background:#fff;color:var(--text);min-width:120px}.tableWrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:720px}.table th,.table td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;font-size:14px;vertical-align:middle}.table th{color:var(--muted);font-weight:500}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{padding:15px}.card h3{margin:0 0 8px;font-size:15px}.card p{margin:6px 0;color:var(--muted);font-size:13px}.money{font-weight:700}.empty{text-align:center;color:var(--muted);padding:32px}.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#eef2ff;font-size:12px}
+.lesson{display:grid;grid-template-columns:92px 1fr auto;gap:15px;align-items:center;border:1px solid var(--line);border-radius:13px;padding:13px 15px;margin-bottom:10px;background:#fff}.lesson.done{background:#f0fdf4;border-color:#bbf7d0}.lessonTime{font-weight:800;font-size:17px}.lessonMain b{font-size:15px}.lessonMain p{margin:5px 0;color:var(--muted);font-size:13px}.actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.progress{height:7px;background:#edf0f4;border-radius:99px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;background:var(--blue)}
+.daynav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.daytitle{text-align:center;font-size:20px;font-weight:800}.daytitle small{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:3px}
+.modal{position:fixed;inset:0;background:#0007;display:none;align-items:center;justify-content:center;z-index:20;padding:18px}.modal.show{display:flex}.box{width:min(900px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:16px;padding:21px}.box.wide{width:min(1120px,100%)}.box h2{margin:0 0 16px}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:13px;color:var(--muted)}.actionsBottom{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.help{font-size:12px;color:var(--muted);line-height:1.6}
+.rateBox{border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:2px}.rateRows{display:flex;flex-direction:column;gap:7px}.rateRow{display:grid;grid-template-columns:80px 80px 1fr auto;gap:7px;align-items:center}.hidden{display:none!important}
+.conflict{padding:11px;border:1px solid #fed7aa;background:#fff7ed;border-radius:10px;margin-bottom:8px}.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}
+@media(max-width:950px){.grid{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){header{padding:13px 15px;align-items:flex-start;flex-direction:column}main{padding:15px}.grid,.cards,.form{grid-template-columns:1fr}.lesson{grid-template-columns:70px 1fr}.lesson>.actions{grid-column:1/-1;justify-content:flex-start}.rateRow{grid-template-columns:1fr 1fr}.daytitle{font-size:16px}}
 </style>
 </head>
 <body>
 <header>
 <div class="brand"><div class="logo">APLUS ACHIEVER</div><div><h1>运营中心</h1><small>课程 · 排课 · 课时 · 收费 · 老师费用</small></div></div>
-<nav><button class="primary" onclick="openCourse()">＋ 新增课程</button><button onclick="openTeacher()">＋ 老师</button><button onclick="openStudent()">＋ 学生</button><button onclick="openSubject()">＋ 科目</button><button onclick="backup()">备份</button><button onclick="restore()">恢复</button></nav>
+<nav><button class="primary" onclick="openCourse()">＋ 新增课程</button><button onclick="openTeacher()">＋ 老师</button><button onclick="openStudent()">＋ 学生</button><button onclick="openSubject()">＋ 科目</button><button onclick="backupData()">备份</button><button onclick="document.getElementById('restoreFile').click()">恢复</button></nav>
 </header>
 <main>
 <div class="tabs">
@@ -41,382 +41,291 @@ main{max-width:1250px;margin:0 auto;padding:24px}.tabs{display:flex;gap:8px;marg
 <div class="panel"><h2>排课冲突</h2><div id="conflicts"></div></div>
 </section>
 
-<section id="schedule" class="page"><div class="panel"><div class="daynav"><button onclick="shiftDay(-1)">‹ 前一天</button><div class="daytitle" id="dayTitle">今天<small id="daySub"></small></div><button onclick="shiftDay(1)">后一天 ›</button></div><div class="toolbar"><input type="date" id="filterDate"><button onclick="goToday()">今天</button><button class="primary" onclick="openCourse()">＋ 新增排课</button></div><div id="scheduleCards" class="scheduleCards"></div></div></section>
+<section id="schedule" class="page"><div class="panel">
+<div class="daynav"><button onclick="shiftDay(-1)">‹ 前一天</button><div class="daytitle" id="dayTitle">今天<small id="daySub"></small></div><button onclick="shiftDay(1)">后一天 ›</button></div>
+<div class="toolbar"><input type="date" id="filterDate"><button onclick="goToday()">今天</button><button class="primary" onclick="openCourse()">＋ 新增排课</button></div>
+<div id="scheduleCards"></div></div></section>
 
 <section id="students" class="page"><div class="panel"><h2>学生</h2><div class="toolbar"><button class="primary" onclick="openStudent()">＋ 新增学生</button></div><div id="studentList"></div></div></section>
+<section id="teachers" class="page"><div class="panel"><h2>老师</h2><div class="toolbar"><button class="primary" onclick="openTeacher()">＋ 新增老师</button></div><div id="teacherList"></div></div></section>
+<section id="subjects" class="page"><div class="panel"><h2>科目</h2><div class="toolbar"><button class="primary" onclick="openSubject()">＋ 新增科目</button></div><div id="subjectList"></div></div></section>
+<section id="courses" class="page"><div class="panel"><h2>课程</h2><div class="toolbar"><button class="primary" onclick="openCourse()">＋ 新增课程</button></div><div id="courseCards"></div></div></section>
 
-<section id="teachers" class="page"><div class="panel"><h2>老师</h2><div class="toolbar"><button class="primary" onclick="openTeacher()">＋ 新增老师</button></div><div id="teacherList"></div></div></section><section id="subjects" class="page"><div class="panel"><h2>科目</h2><div class="toolbar"><button class="primary" onclick="openSubject()">＋ 新增科目</button></div><div id="subjectList"></div></div></section><section id="courses" class="page"><div class="panel"><h2>课程与课时包</h2><div class="toolbar"><button class="primary" onclick="openCourse()">＋ 新增课程</button></div><div class="cards" id="courseCards"></div></div></section>
-
-<section id="fees" class="page"><div class="panel"><h2>费用</h2><div class="grid" style="grid-template-columns:repeat(3,1fr)"><div class="stat"><span>学生收费</span><b id="fIncome">S$0</b></div><div class="stat"><span>老师费用</span><b id="fTeacher">S$0</b></div><div class="stat"><span>课程差额</span><b id="fMargin">S$0</b></div></div><div style="overflow:auto;margin-top:16px"><table class="table"><thead><tr><th>课程</th><th>学生</th><th>老师</th><th>科目</th><th>课时包</th><th>学生收费</th><th>老师费用</th><th>差额</th></tr></thead><tbody id="feeBody"></tbody></table></div></div><div class="panel" style="margin-top:16px"><h2>老师结算明细</h2><div class="toolbar"><select id="settleTeacher" onchange="renderTeacherSettlement()"><option value="">全部老师</option></select><select id="settleCourse" onchange="renderTeacherSettlement()"><option value="">全部课程</option></select><input type="date" id="settleStart" onchange="renderTeacherSettlement()"><input type="date" id="settleEnd" onchange="renderTeacherSettlement()"><button onclick="setSettlementRange(0)">本月</button><button onclick="setSettlementRange(1)">上月</button><button class="primary" onclick="printTeacherSettlement()">打印结算明细</button></div><div id="settlementSummary" style="margin:10px 0"></div><div style="overflow:auto"><table class="table"><thead><tr><th>日期</th><th>课程</th><th>科目</th><th>学生</th><th>实际出席</th><th>老师 Rate</th><th>本节费用</th></tr></thead><tbody id="settlementBody"></tbody></table></div></div></section>
+<section id="fees" class="page">
+<div class="panel"><h2>费用总览</h2><div class="grid" style="grid-template-columns:repeat(3,1fr)"><div class="stat"><span>学生收费</span><b id="fIncome">S$0</b></div><div class="stat"><span>老师费用</span><b id="fTeacher">S$0</b></div><div class="stat"><span>课程差额</span><b id="fMargin">S$0</b></div></div>
+<div class="tableWrap" style="margin-top:16px"><table class="table"><thead><tr><th>课程</th><th>学生</th><th>老师</th><th>科目</th><th>课时包</th><th>学生收费</th><th>已分摊老师费用</th><th>差额</th></tr></thead><tbody id="feeBody"></tbody></table></div></div>
+<div class="panel"><h2>老师结算明细</h2><div class="toolbar"><select id="settleTeacher" onchange="renderSettlement()"><option value="">全部老师</option></select><select id="settleCourse" onchange="renderSettlement()"><option value="">全部课程</option></select><input type="date" id="settleStart" onchange="renderSettlement()"><input type="date" id="settleEnd" onchange="renderSettlement()"><button onclick="setSettlementRange(0)">本月</button><button onclick="setSettlementRange(1)">上月</button><button class="primary" onclick="printSettlement()">打印结算明细</button></div><div id="settlementSummary" class="help"></div><div class="tableWrap"><table class="table"><thead><tr><th>日期</th><th>课程</th><th>科目</th><th>学生</th><th>实际出席</th><th>老师 Rate</th><th>本节费用</th></tr></thead><tbody id="settlementBody"></tbody></table></div></div>
+</section>
 </main>
 
-<div class="modal" id="courseModal"><div class="box"><h2 id="courseModalTitle">新增课程</h2><div class="form">
-<div class="field"><label>学生</label><select id="cStu"></select></div>
+<div class="modal" id="courseModal"><div class="box wide"><h2 id="courseModalTitle">新增课程</h2><div class="form">
 <div class="field"><label>课程名称</label><input id="cName" placeholder="例如 P5 Mathematics"></div>
 <div class="field"><label>老师</label><select id="cTeacher"></select></div>
 <div class="field"><label>科目</label><select id="cSubject"></select></div>
 <div class="field"><label>Zoom</label><input id="cZoom" placeholder="例如 Zoom 1"></div>
 <div class="field"><label>开始日期</label><input type="date" id="cStart"></div>
 <div class="field"><label>结束日期</label><input type="date" id="cEnd"></div>
-<div class="field full"><label>每周上课日</label><div style="display:flex;gap:12px;flex-wrap:wrap"><label><input type="checkbox" name="weekday" value="1"> 周一</label><label><input type="checkbox" name="weekday" value="2"> 周二</label><label><input type="checkbox" name="weekday" value="3"> 周三</label><label><input type="checkbox" name="weekday" value="4"> 周四</label><label><input type="checkbox" name="weekday" value="5"> 周五</label><label><input type="checkbox" name="weekday" value="6"> 周六</label><label><input type="checkbox" name="weekday" value="0"> 周日</label></div></div>
+<div class="field full"><label>每周上课日</label><div id="weekdayBox" style="display:flex;gap:12px;flex-wrap:wrap"></div></div>
 <div class="field"><label>上课时间</label><input type="time" id="cTime" value="16:00"></div>
 <div class="field"><label>结束时间</label><input type="time" id="cEndTime" value="17:30"></div>
-<div class="field"><label>课时包</label><input type="number" id="cTotal" min="1" value="10"></div>
-<div class="field"><label>学生收费（整个课时包）</label><input type="number" id="cFee" min="0" step=".01" placeholder="500"></div>
-<div class="field"><label>老师费用（每节）</label><input type="number" id="cTeacherFee" min="0" step=".01" placeholder="30"></div>
-<div class="field full"><label>备注</label><input id="cNote" placeholder="可选"></div>
-</div><div class="actions"><button id="deleteCourseBtn" class="danger" style="display:none;margin-right:auto" onclick="deleteCourse()">删除课程</button><button onclick="closeModal('courseModal')">取消</button><button class="primary" onclick="saveCourse()">保存课程</button></div></div></div>
+<div class="field"><label>默认课时包</label><input type="number" id="cTotal" min="1" value="10"></div>
+<div class="field"><label>默认收费（S$）</label><input type="number" id="cFee" min="0" step=".01" value="0"></div>
+<div class="field full"><label>老师费用模式</label><select id="cRateMode" onchange="renderRateFields()"><option value="fixed">固定每节</option><option value="tiered">按实际人数</option><option value="manual">每节手动指定</option></select></div>
+<div class="field" id="fixedRateField"><label>固定老师费用（每节 S$）</label><input type="number" id="cTeacherFee" min="0" step=".01" value="0"></div>
+<div class="field full hidden" id="tieredRateField"><label>人数费率</label><div class="rateBox"><div id="rateRows" class="rateRows"></div><button style="margin-top:8px" onclick="addRateRow()">＋ 增加人数区间</button><div class="help">例如：1人 S$30；2人 S$40；3–4人 S$50；5–6人 S$70。</div></div></div>
+<div class="field full"><label>课程备注</label><input id="cNote" placeholder="可选"></div>
+</div><div class="actionsBottom"><button id="deleteCourseBtn" class="danger hidden" style="margin-right:auto" onclick="deleteCourse()">删除课程</button><button onclick="closeModal('courseModal')">取消</button><button class="primary" onclick="saveCourse()">保存课程</button></div></div></div>
 
-<div class="modal" id="studentModal"><div class="box"><h2 id="studentModalTitle">学生</h2><div class="form"><div class="field full"><label>学生姓名</label><input id="stuName" placeholder="例如 Jason"></div></div><div class="actions"><button onclick="closeModal('studentModal')">取消</button><button class="primary" onclick="saveStudent()">保存</button></div></div></div>
-
-<div class="modal" id="teacherModal"><div class="box"><h2>新增老师</h2><div class="form"><div class="field full"><label>老师姓名</label><input id="teacherName"></div></div><div class="actions"><button onclick="closeModal('teacherModal')">取消</button><button class="primary" onclick="saveTeacher()">保存</button></div></div></div><div class="modal" id="subjectModal"><div class="box"><h2 id="subjectModalTitle">新增科目</h2><div class="form"><div class="field"><label>科目名称</label><input id="subjectName"></div><div class="field"><label>年级 / 层级</label><input id="subjectLevel" placeholder="例如 P5"></div></div><div class="actions"><button onclick="closeModal('subjectModal')">取消</button><button class="primary" onclick="saveSubject()">保存</button></div></div></div><input type="file" id="restoreFile" accept="application/json" style="display:none">
+<div class="modal" id="studentModal"><div class="box"><h2 id="studentModalTitle">新增学生</h2><div class="form"><div class="field full"><label>学生姓名</label><input id="stuName" placeholder="例如 Jason"></div></div><div class="actionsBottom"><button onclick="closeModal('studentModal')">取消</button><button class="primary" onclick="saveStudent()">保存</button></div></div></div>
+<div class="modal" id="teacherModal"><div class="box"><h2 id="teacherModalTitle">新增老师</h2><div class="form"><div class="field full"><label>老师姓名</label><input id="teacherName" placeholder="例如 Wilbert"></div></div><div class="actionsBottom"><button onclick="closeModal('teacherModal')">取消</button><button class="primary" onclick="saveTeacher()">保存</button></div></div></div>
+<div class="modal" id="subjectModal"><div class="box"><h2 id="subjectModalTitle">新增科目</h2><div class="form"><div class="field"><label>科目名称</label><input id="subjectName" placeholder="例如 Mathematics"></div><div class="field"><label>年级 / 层级</label><input id="subjectLevel" placeholder="例如 P5"></div></div><div class="actionsBottom"><button onclick="closeModal('subjectModal')">取消</button><button class="primary" onclick="saveSubject()">保存</button></div></div></div>
+<input type="file" id="restoreFile" accept="application/json" style="display:none">
 
 <script>
 const KEY='aplus-operation-v1';
-let db=JSON.parse(localStorage.getItem(KEY)||'{"students":[],"teachers":[],"subjects":[],"courses":[]}');db.teachers=db.teachers||[];db.subjects=db.subjects||[];
-let editingCourseId=null;let editingStudentId=null;let editingTeacherId=null;let editingSubjectId=null;
-(db.courses||[]).forEach(c=>{c.status=c.status||{};c.dates=c.dates||[];if(c.teacher&&!db.teachers.some(t=>t.id===c.teacher)){let t=db.teachers.find(t=>t.name===c.teacher);if(t)c.teacher=t.id;}});
 const $=id=>document.getElementById(id);
-const money=n=>'S$'+Number(n||0).toLocaleString('en-SG',{minimumFractionDigits:0,maximumFractionDigits:2});
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const today=()=>new Date().toISOString().slice(0,10);
-function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
-function datesBetween(a,b,days){let out=[],d=new Date(a+'T00:00:00'),e=new Date(b+'T00:00:00'),want=(days||[]).map(Number);while(d<=e){if(want.includes(d.getDay()))out.push(d.toISOString().slice(0,10));d.setDate(d.getDate()+1)}return out.length?out:[a]}
-function sessions(c){return c.dates.map(d=>({date:d,status:c.status[d]||'未上'}))}
-function completed(c){return c.dates.filter(d=>c.status[d]==='已上').length}
-function remaining(c){return Math.max(0,c.total-completed(c))}
-function selectedDate(){return $("filterDate").value||today()}
-function shiftDay(n){let d=new Date(selectedDate()+"T00:00:00");d.setDate(d.getDate()+n);$("filterDate").value=d.toISOString().slice(0,10);render()}
-function goToday(){$("filterDate").value=today();render()}
-function fmtDate(d){let x=new Date(d+"T00:00:00");return x.toLocaleDateString("zh-CN",{month:"long",day:"numeric",weekday:"short"})}
-function fillStudents(){$('cStu').innerHTML=db.students.map(s=>'<option value="'+s.id+'">'+esc(s.name)+'</option>').join('')}
-function fillTeachers(){$('cTeacher').innerHTML='<option value="">请选择老师</option>'+db.teachers.map(t=>'<option value="'+t.id+'">'+esc(t.name)+'</option>').join('')}
-function fillSubjects(){$('cSubject').innerHTML='<option value="">请选择科目</option>'+db.subjects.map(s=>'<option value="'+s.id+'">'+esc(s.name)+(s.level?' · '+esc(s.level):'')+'</option>').join('')}
+const money=n=>'S$'+Number(n||0).toLocaleString('en-SG',{minimumFractionDigits:0,maximumFractionDigits:2});
+const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const clone=o=>JSON.parse(JSON.stringify(o));
+let db=loadDB();
+let editingCourseId=null,editingStudentId=null,editingTeacherId=null,editingSubjectId=null;
+
+function loadDB(){
+  let raw=localStorage.getItem(KEY), d;
+  try{d=raw?JSON.parse(raw):null}catch(e){d=null}
+  if(!d)d={students:[],teachers:[],subjects:[],courses:[]};
+  d.students=Array.isArray(d.students)?d.students:[];
+  d.teachers=Array.isArray(d.teachers)?d.teachers:[];
+  d.subjects=Array.isArray(d.subjects)?d.subjects:[];
+  d.courses=Array.isArray(d.courses)?d.courses:[];
+  d.courses.forEach(migrateCourse);
+  return d;
+}
+function migrateCourse(c){
+  c.status=c.status||{};c.attendance=c.attendance||{};c.statusRate=c.statusRate||{};c.dates=Array.isArray(c.dates)?c.dates:[];
+  c.members=Array.isArray(c.members)?c.members:[];
+  if(!c.members.length && Array.isArray(c.students) && c.students.length)c.members=c.students.map(id=>({id,joinDate:c.start||today(),leaveDate:'',total:Number(c.total||10),fee:Number(c.fee||0),status:'active'}));
+  c.members.forEach(m=>{m.joinDate=m.joinDate||c.start||today();m.leaveDate=m.leaveDate||'';m.total=Number(m.total??c.total??10);m.fee=Number(m.fee??c.fee??0);m.status=m.status||'active'});
+  c.teacherRateMode=c.teacherRateMode||'fixed';c.teacherFee=Number(c.teacherFee||0);
+  c.teacherRates=Array.isArray(c.teacherRates)?c.teacherRates:[];
+  if(c.teacherRateMode==='tiered'&&!c.teacherRates.length)c.teacherRates=[{min:1,max:1,rate:c.teacherFee},{min:2,max:2,rate:c.teacherFee},{min:3,max:4,rate:c.teacherFee}];
+  c.students=c.members.filter(m=>!m.leaveDate||m.leaveDate>=today()).map(m=>m.id);
+}
+function saveDB(){localStorage.setItem(KEY,JSON.stringify(db));renderAll()}
+function normalize(c){migrateCourse(c);return c}
+function studentName(id){return db.students.find(s=>s.id===id)?.name||id||'—'}
 function teacherName(id){return db.teachers.find(t=>t.id===id)?.name||id||'—'}
 function subjectName(id){return db.subjects.find(s=>s.id===id)?.name||id||'—'}
+function activeMembers(c,date){normalize(c);return c.members.filter(m=>m.joinDate<=date&&(!m.leaveDate||m.leaveDate>=date))}
+function memberIds(c,date){return activeMembers(c,date).map(m=>m.id)}
+function activeStudentsText(c,date){return activeMembers(c,date).map(m=>studentName(m.id)).join('、')||'无在籍学生'}
+function completedCount(c){return c.dates.filter(d=>c.status[d]==='已上').length}
+function memberUsed(c,m){return c.dates.filter(d=>c.status[d]==='已上'&&m.joinDate<=d&&(!m.leaveDate||m.leaveDate>=d)).length}
+function memberRemaining(c,m){return Math.max(0,m.total-memberUsed(c,m))}
+function attendance(c,date){let active=memberIds(c,date),a=Array.isArray(c.attendance[date])?c.attendance[date]:active;return a.filter(id=>active.includes(id))}
+function lessonRate(c,date){
+  if(c.teacherRateMode==='manual')return Number(c.statusRate[date]??0);
+  if(c.teacherRateMode==='tiered'){
+    let n=attendance(c,date).length;
+    let row=c.teacherRates.find(r=>n>=Number(r.min)&&n<=Number(r.max));
+    return Number(row?.rate||0);
+  }
+  return Number(c.teacherFee||0);
+}
+function teacherTotal(c){return c.dates.filter(d=>c.status[d]==='已上').reduce((s,d)=>s+lessonRate(c,d),0)}
+function courseRevenue(c){normalize(c);return c.members.reduce((s,m)=>s+Number(m.fee||0),0)}
+function allLessons(){
+  let out=[];
+  db.courses.forEach(c=>normalize(c).dates.forEach(date=>out.push({c,date})));
+  return out.sort((a,b)=>(a.date+a.c.time).localeCompare(b.date+b.c.time));
+}
+function lessonsOn(date){return allLessons().filter(x=>x.date===date).sort((a,b)=>String(a.c.time).localeCompare(String(b.c.time)))}
+function overlaps(a,b){return a.c.time<b.c.endTime&&b.c.time<a.c.endTime}
+function conflicts(){
+  let a=allLessons(),out=[];
+  for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++){
+    let x=a[i],y=a[j];if(x.date!==y.date||!overlaps(x,y))continue;
+    let sameStudent=memberIds(x.c,x.date).some(id=>memberIds(y.c,y.date).includes(id));
+    let sameTeacher=x.c.teacher&&x.c.teacher===y.c.teacher;
+    if(sameStudent||sameTeacher)out.push({x,y,reason:sameStudent?'学生时间冲突':'老师时间冲突'});
+  }
+  return out;
+}
+function datesBetween(start,end,days){
+  let out=[],d=new Date(start+'T00:00:00'),e=new Date(end+'T00:00:00'),want=days.map(Number);
+  while(d<=e){if(want.includes(d.getDay()))out.push(d.toISOString().slice(0,10));d.setDate(d.getDate()+1)}
+  return out;
+}
+function selectedDate(){return $('filterDate').value||today()}
+function fmtDate(d){return new Date(d+'T00:00:00').toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'short'})}
+function shiftDay(n){let d=new Date(selectedDate()+'T00:00:00');d.setDate(d.getDate()+n);$('filterDate').value=d.toISOString().slice(0,10);renderAll()}
+function goToday(){$('filterDate').value=today();renderAll()}
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));b.classList.add('active');$(b.dataset.page).classList.add('active');if(b.dataset.page==='fees')renderSettlement()});
+$('restoreFile').addEventListener('change',e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!d.students||!d.teachers||!d.subjects||!d.courses)throw Error();db=d;db.courses.forEach(migrateCourse);saveDB();alert('恢复完成')}catch(x){alert('备份文件格式不正确')}};r.readAsText(f);e.target.value=''});
+
+function backupData(){let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='aplus-operation-backup-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
+
 function openStudent(){editingStudentId=null;$('studentModalTitle').textContent='新增学生';$('stuName').value='';$('studentModal').classList.add('show')}
 function editStudent(id){let s=db.students.find(x=>x.id===id);if(!s)return;editingStudentId=id;$('studentModalTitle').textContent='修改学生';$('stuName').value=s.name||'';$('studentModal').classList.add('show')}
-function deleteStudent(id){if(db.courses.some(c=>opNormalize(c).members?.some(m=>m.id===id&&!m.leaveDate)||c.students?.includes(id)||c.stu===id)){alert('该学生已有课程记录，不能直接删除。请先在课程的“学生课时包”中退出该学生。');return}if(!confirm('确定删除这名学生吗？'))return;db.students=db.students.filter(s=>s.id!==id);save()}
-function saveStudent(){let n=$('stuName').value.trim();if(!n){alert('请输入学生姓名');return}if(editingStudentId){let s=db.students.find(x=>x.id===editingStudentId);if(s)s.name=n}else db.students.push({id:uid(),name:n});closeModal('studentModal');save()}
-function openTeacher(){editingTeacherId=null;$('teacherName').value='';$('teacherModal').classList.add('show')}
-function editTeacher(id){let t=db.teachers.find(x=>x.id===id);if(!t)return;editingTeacherId=id;$('teacherName').value=t.name;$('teacherModal').classList.add('show')}
-function deleteTeacher(id){if(db.courses.some(c=>c.teacher===id)){alert('该老师已有课程，不能删除。请先修改或删除相关课程。');return}if(!confirm('确定删除这名老师吗？'))return;db.teachers=db.teachers.filter(t=>t.id!==id);save()}
-function saveTeacher(){let n=$('teacherName').value.trim();if(!n)return;if(editingTeacherId){let t=db.teachers.find(x=>x.id===editingTeacherId);if(t)t.name=n}else db.teachers.push({id:uid(),name:n});closeModal('teacherModal');save()}
+function saveStudent(){let n=$('stuName').value.trim();if(!n)return alert('请输入学生姓名');if(editingStudentId){let s=db.students.find(x=>x.id===editingStudentId);if(s)s.name=n}else db.students.push({id:uid(),name:n});closeModal('studentModal');saveDB()}
+function deleteStudent(id){if(db.courses.some(c=>normalize(c).members.some(m=>m.id===id&&!m.leaveDate))){alert('该学生仍在课程中，请先在“学生课时包”里设置退出日期。');return}if(confirm('确定删除这名学生吗？')){db.students=db.students.filter(x=>x.id!==id);saveDB()}}
+
+function openTeacher(){editingTeacherId=null;$('teacherModalTitle').textContent='新增老师';$('teacherName').value='';$('teacherModal').classList.add('show')}
+function editTeacher(id){let t=db.teachers.find(x=>x.id===id);if(!t)return;editingTeacherId=id;$('teacherModalTitle').textContent='修改老师';$('teacherName').value=t.name||'';$('teacherModal').classList.add('show')}
+function saveTeacher(){let n=$('teacherName').value.trim();if(!n)return alert('请输入老师姓名');if(editingTeacherId){let t=db.teachers.find(x=>x.id===editingTeacherId);if(t)t.name=n}else db.teachers.push({id:uid(),name:n});closeModal('teacherModal');saveDB()}
+function deleteTeacher(id){if(db.courses.some(c=>c.teacher===id)){alert('该老师已有课程记录，请先修改课程。');return}if(confirm('确定删除这名老师吗？')){db.teachers=db.teachers.filter(x=>x.id!==id);saveDB()}}
+
 function openSubject(){editingSubjectId=null;$('subjectModalTitle').textContent='新增科目';$('subjectName').value='';$('subjectLevel').value='';$('subjectModal').classList.add('show')}
-function editSubject(id){let s=db.subjects.find(x=>x.id===id);if(!s)return;editingSubjectId=id;$('subjectModalTitle').textContent='修改科目';$('subjectName').value=s.name;$('subjectLevel').value=s.level||'';$('subjectModal').classList.add('show')}
-function deleteSubject(id){if(db.courses.some(c=>c.subject===id)){alert('该科目已有课程，不能删除。请先修改或删除相关课程。');return}if(!confirm('确定删除这个科目吗？'))return;db.subjects=db.subjects.filter(s=>s.id!==id);save()}
-function saveSubject(){let n=$('subjectName').value.trim(),l=$('subjectLevel').value.trim();if(!n)return;if(editingSubjectId){let s=db.subjects.find(x=>x.id===editingSubjectId);if(s){s.name=n;s.level=l}}else db.subjects.push({id:uid(),name:n,level:l});closeModal('subjectModal');save()}
-function renderTeachers(){$('teacherList').innerHTML=db.teachers.length?'<table class="table"><thead><tr><th>老师</th><th>课程</th><th>已上课时</th><th>已产生费用</th><th>操作</th></tr></thead><tbody>'+db.teachers.map(t=>{let cc=db.courses.filter(c=>c.teacher===t.id),done=cc.reduce((a,c)=>a+completed(c),0),cost=cc.reduce((a,c)=>a+c.teacherFee*completed(c),0);return '<tr><td>'+esc(t.name)+'</td><td>'+cc.length+'</td><td>'+done+'</td><td>'+money(cost)+'</td><td><button onclick="editTeacher(\''+t.id+'\')">修改</button> <button class="danger" onclick="deleteTeacher(\''+t.id+'\')">删除</button></td></tr>'}).join('')+'</tbody></table>':'<div class="empty">还没有老师</div>'}
-function renderSubjects(){$('subjectList').innerHTML=db.subjects.length?'<table class="table"><thead><tr><th>科目</th><th>年级 / 层级</th><th>课程</th><th>操作</th></tr></thead><tbody>'+db.subjects.map(s=>'<tr><td>'+esc(s.name)+'</td><td>'+esc(s.level||'—')+'</td><td>'+db.courses.filter(c=>c.subject===s.id).length+'</td><td><button onclick="editSubject(\''+s.id+'\')">修改</button> <button class="danger" onclick="deleteSubject(\''+s.id+'\')">删除</button></td></tr>').join('')+'</tbody></table>':'<div class="empty">还没有科目</div>'}
-function resetCourseForm(){editingCourseId=null;$('courseModalTitle').textContent='新增课程';$('deleteCourseBtn').style.display='none';$('cName').value='';$('cTeacher').value='';$('cSubject').value='';$('cZoom').value='';$('cStart').value=today();$('cEnd').value=today();$('cTime').value='16:00';$('cEndTime').value='17:30';$('cTotal').value=10;$('cFee').value='';$('cTeacherFee').value='';$('cNote').value='';document.querySelectorAll('input[name="weekday"]').forEach(x=>x.checked=false);document.querySelector('input[name="weekday"][value="'+new Date().getDay()+'"]').checked=true}
-function openCourse(){if(!db.students.length){alert('请先新增学生');openStudent();return}if(!db.teachers.length){alert('请先新增老师');openTeacher();return}fillStudents();fillTeachers();fillSubjects();resetCourseForm();$('courseModal').classList.add('show')}
-function editCourse(id){let c=db.courses.find(x=>x.id===id);if(!c)return;fillStudents();fillTeachers();fillSubjects();editingCourseId=id;$('courseModalTitle').textContent='修改课程 / 课时包';$('deleteCourseBtn').style.display='block';$('cStu').value=c.stu;$('cName').value=c.name;$('cTeacher').value=c.teacher;$('cSubject').value=c.subject||'';$('cZoom').value=c.zoom||'';$('cStart').value=c.start;$('cEnd').value=c.end;$('cTime').value=c.time;$('cEndTime').value=c.endTime;$('cTotal').value=c.total;$('cFee').value=c.fee;$('cTeacherFee').value=c.teacherFee;$('cNote').value=c.note||'';document.querySelectorAll('input[name="weekday"]').forEach(x=>x.checked=c.days.map(Number).includes(Number(x.value)));$('courseModal').classList.add('show')}
-function deleteCourse(){let id=editingCourseId,c=db.courses.find(x=>x.id===id);if(!c)return;let used=completed(c),msg=used?'这门课程已经消耗了 '+used+' 个课时。删除后该课程、排课和费用记录都会移除。确定删除吗？':'确定删除这门课程吗？';if(!confirm(msg))return;db.courses=db.courses.filter(x=>x.id!==id);closeModal('courseModal');save()}
+function editSubject(id){let s=db.subjects.find(x=>x.id===id);if(!s)return;editingSubjectId=id;$('subjectModalTitle').textContent='修改科目';$('subjectName').value=s.name||'';$('subjectLevel').value=s.level||'';$('subjectModal').classList.add('show')}
+function saveSubject(){let n=$('subjectName').value.trim(),l=$('subjectLevel').value.trim();if(!n)return alert('请输入科目名称');if(editingSubjectId){let s=db.subjects.find(x=>x.id===editingSubjectId);if(s){s.name=n;s.level=l}}else db.subjects.push({id:uid(),name:n,level:l});closeModal('subjectModal');saveDB()}
+function deleteSubject(id){if(db.courses.some(c=>c.subject===id)){alert('该科目已有课程记录，请先修改课程。');return}if(confirm('确定删除这个科目吗？')){db.subjects=db.subjects.filter(x=>x.id!==id);saveDB()}}
+
+function fillCourseSelects(){
+  $('cTeacher').innerHTML='<option value="">请选择老师</option>'+db.teachers.map(t=>'<option value="'+esc(t.id)+'">'+esc(t.name)+'</option>').join('');
+  $('cSubject').innerHTML='<option value="">请选择科目</option>'+db.subjects.map(s=>'<option value="'+esc(s.id)+'">'+esc(s.name)+(s.level?' · '+esc(s.level):'')+'</option>').join('');
+}
+function weekdayHtml(){return ['周一','周二','周三','周四','周五','周六','周日'].map((n,i)=>'<label style="display:inline-flex;align-items:center;gap:4px"><input type="checkbox" name="weekday" value="'+(i===6?0:i+1)+'"> '+n+'</label>').join('')}
+function openCourse(){
+  if(!db.teachers.length){alert('请先新增老师');openTeacher();return}
+  if(!db.subjects.length){alert('请先新增科目');openSubject();return}
+  editingCourseId=null;$('courseModalTitle').textContent='新增课程';$('deleteCourseBtn').classList.add('hidden');fillCourseSelects();
+  $('cName').value='';$('cTeacher').value='';$('cSubject').value='';$('cZoom').value='';$('cStart').value=today();$('cEnd').value=today();$('cTime').value='16:00';$('cEndTime').value='17:30';$('cTotal').value=10;$('cFee').value=0;$('cRateMode').value='fixed';$('cTeacherFee').value=0;$('cNote').value='';$('weekdayBox').innerHTML=weekdayHtml();$('rateRows').innerHTML='';addRateRow();renderRateFields();$('courseModal').classList.add('show')
+}
+function editCourse(id){
+  let c=db.courses.find(x=>x.id===id);if(!c)return;normalize(c);editingCourseId=id;$('courseModalTitle').textContent='修改课程';$('deleteCourseBtn').classList.remove('hidden');fillCourseSelects();
+  $('cName').value=c.name||'';$('cTeacher').value=c.teacher||'';$('cSubject').value=c.subject||'';$('cZoom').value=c.zoom||'';$('cStart').value=c.start||'';$('cEnd').value=c.end||'';$('cTime').value=c.time||'16:00';$('cEndTime').value=c.endTime||'17:30';$('cTotal').value=c.total||10;$('cFee').value=c.fee||0;$('cRateMode').value=c.teacherRateMode||'fixed';$('cTeacherFee').value=c.teacherFee||0;$('cNote').value=c.note||'';$('weekdayBox').innerHTML=weekdayHtml();
+  document.querySelectorAll('[name=weekday]').forEach(x=>x.checked=(c.days||[]).map(Number).includes(Number(x.value)));$('rateRows').innerHTML='';(c.teacherRates||[]).forEach(r=>addRateRow(r.min,r.max,r.rate));if(!$('rateRows').children.length)addRateRow();renderRateFields();$('courseModal').classList.add('show')
+}
+function addRateRow(min=1,max=1,rate=0){let row=document.createElement('div');row.className='rateRow';row.innerHTML='<input class="rMin" type="number" min="1" value="'+min+'" placeholder="最少人数"><input class="rMax" type="number" min="1" value="'+max+'" placeholder="最多人数"><input class="rRate" type="number" min="0" step=".01" value="'+rate+'" placeholder="每节费用"><button class="danger" onclick="this.parentElement.remove()">删除</button>';$('rateRows').appendChild(row)}
+function renderRateFields(){let tier=$('cRateMode').value==='tiered';$('tieredRateField').classList.toggle('hidden',!tier);$('fixedRateField').classList.toggle('hidden',tier)}
 function saveCourse(){
- let stu=$('cStu').value,name=$('cName').value.trim(),teacher=$('cTeacher').value,subject=$('cSubject').value,zoom=$('cZoom').value.trim(),start=$('cStart').value||today(),end=$('cEnd').value||start,time=$('cTime').value,endTime=$('cEndTime').value,total=+($('cTotal').value||1),fee=+($('cFee').value||0),teacherFee=+($('cTeacherFee').value||0);
- let days=[...document.querySelectorAll('input[name="weekday"]:checked')].map(x=>+x.value);if(!days.length)days=[new Date(start+'T00:00:00').getDay()];
- if(!name||!teacher||!subject){alert('请填写课程名称、老师和科目');return}if(end<start){alert('结束日期不能早于开始日期');return}
- let old=editingCourseId?db.courses.find(x=>x.id===editingCourseId):null,used=old?completed(old):0;if(total<used){alert('课时包总课时不能少于已经消耗的 '+used+' 节。');return}
- let ds=datesBetween(start,end,days);if(ds.length>total)ds=ds.slice(0,total);
- let oldStatus=old?old.status||{}:{},status={};ds.forEach(d=>{if(oldStatus[d])status[d]=oldStatus[d]});
- let data={id:old?old.id:uid(),stu,name,teacher,subject,zoom,start,end,days,time,endTime,total,fee,teacherFee,note:$('cNote').value.trim(),dates:ds,status};
- if(old)Object.assign(old,data);else db.courses.push(data);
- closeModal('courseModal');save();
+  let name=$('cName').value.trim(),teacher=$('cTeacher').value,subject=$('cSubject').value,start=$('cStart').value,end=$('cEnd').value,time=$('cTime').value,endTime=$('cEndTime').value;
+  if(!name||!teacher||!subject||!start||!end||!time||!endTime)return alert('请把课程名称、老师、科目、日期和时间填写完整');
+  if(end<start)return alert('结束日期不能早于开始日期');if(endTime<=time)return alert('结束时间必须晚于开始时间');
+  let days=[...document.querySelectorAll('[name=weekday]:checked')].map(x=>Number(x.value));if(!days.length)return alert('请选择每周上课日');
+  let rates=[...document.querySelectorAll('.rateRow')].map(r=>({min:Number(r.querySelector('.rMin').value||0),max:Number(r.querySelector('.rMax').value||0),rate:Number(r.querySelector('.rRate').value||0)})).filter(r=>r.min>0&&r.max>=r.min);
+  let old=editingCourseId?db.courses.find(x=>x.id===editingCourseId):null;
+  let data=old||{id:uid(),members:[],status:{},attendance:{},statusRate:{}};
+  data.name=name;data.teacher=teacher;data.subject=subject;data.zoom=$('cZoom').value.trim();data.start=start;data.end=end;data.days=days;data.time=time;data.endTime=endTime;data.total=Number($('cTotal').value||0);data.fee=Number($('cFee').value||0);data.teacherRateMode=$('cRateMode').value;data.teacherFee=Number($('cTeacherFee').value||0);data.teacherRates=rates;data.note=$('cNote').value.trim();data.dates=datesBetween(start,end,days);
+  normalize(data);
+  if(!data.members.length){
+    let sid=db.students[0]?.id;
+    if(sid)data.members=[{id:sid,joinDate:start,leaveDate:'',total:data.total,fee:data.fee,status:'active'}];
+  }else{
+    data.members.forEach(m=>{if(m.total===0)m.total=data.total});
+  }
+  data.students=memberIds(data,today());
+  if(!old)db.courses.push(data);
+  closeModal('courseModal');saveDB()
 }
-function mark(id,date){let c=db.courses.find(x=>x.id===id);if(!c)return;c.status[date]=c.status[date]==='已上'?'未上':'已上';save()}
-function allLessons(){return db.courses.flatMap(c=>c.dates.map(date=>({c,date,status:c.status[date]||'未上'})))}
-function studentName(id){return db.students.find(s=>s.id===id)?.name||'—'}
-function conflicts(){
- let a=allLessons().filter(x=>x.date);
- let out=[];
- for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++){
-  let x=a[i],y=a[j];if(x.date!==y.date)continue;
-  let overlap=x.c.time<y.c.endTime&&y.c.time<x.c.endTime;
-  if(overlap&&(x.c.stu===y.c.stu||x.c.teacher===y.c.teacher))out.push({x,y,reason:x.c.stu===y.c.stu?'学生时间冲突':'老师时间冲突'});
- }
- return out;
-}
-function render(){
- let ls=allLessons(),t=today(),tl=ls.filter(x=>x.date===t),done=tl.filter(x=>x.status==='已上').length;
- $('sToday').textContent=tl.length;$('sDone').textContent=done;$('sPending').textContent=tl.length-done;
- $('sLow').textContent=db.courses.filter(c=>remaining(c)<=2).length;
- let inc=db.courses.reduce((a,c)=>a+c.fee,0),tc=db.courses.reduce((a,c)=>a+c.teacherFee*completed(c),0);
- $('sIncome').textContent=money(inc);$('sTeacher').textContent=money(tc);
- $('fIncome').textContent=money(inc);$('fTeacher').textContent=money(tc);$('fMargin').textContent=money(inc-tc);
- $('todayList').innerHTML=tl.length?tl.sort((a,b)=>a.c.time.localeCompare(b.c.time)).map(x=>lessonHTML(x,true)).join(''):'<div class="empty">今天没有课程</div>';
- let cs=conflicts();$('conflicts').innerHTML=cs.length?cs.map(x=>'<div style="padding:9px 0;border-bottom:1px solid var(--line)"><span class="bad">● '+x.reason+'</span>　'+x.x.date+' '+x.x.c.time+'–'+x.x.c.endTime+'　'+studentName(x.x.c.stu)+' / '+x.x.c.name+' / '+x.x.c.teacher+'　↔　'+studentName(x.y.c.stu)+' / '+x.y.c.name+' / '+x.y.c.teacher+'</div>').join(''):'<div class="empty">没有发现学生或老师时间冲突</div>';
- let fd=selectedDate();let fl=ls.filter(x=>x.date===fd).sort((a,b)=>a.c.time.localeCompare(b.c.time));
- let dDone=fl.filter(x=>x.status==='已上').length;
- $('dayTitle').innerHTML=(fd===t?'今天':'')+' '+fmtDate(fd)+'<small>'+dDone+' / '+fl.length+' 节已完成</small>';
- $('scheduleCards').innerHTML=fl.length?fl.map(x=>lessonCard(x)).join(''):'<div class="empty">这一天没有课程。点击“＋ 新增排课”开始安排。</div>';
- renderTeachers();renderSubjects();
- $('studentList').innerHTML=db.students.length?'<table class="table"><thead><tr><th>学生</th><th>课程</th><th>剩余课时</th><th>课时包费用</th><th>操作</th></tr></thead><tbody>'+db.students.map(s=>{let cc=db.courses.filter(c=>c.stu===s.id);return '<tr><td><b>'+esc(s.name)+'</b></td><td>'+cc.length+' 门</td><td>'+cc.reduce((a,c)=>a+remaining(c),0)+'</td><td>'+money(cc.reduce((a,c)=>a+c.fee,0))+'</td><td><button onclick="editStudent(\''+s.id+'\')">修改</button> <button class="danger" onclick="deleteStudent(\''+s.id+'\')">删除</button></td></tr>'}).join('')+'</tbody></table>':'<div class="empty">还没有学生</div>';
- $('courseCards').innerHTML=db.courses.length?db.courses.map(c=>{let used=completed(c),rem=remaining(c),pct=Math.min(100,Math.round(used/c.total*100)),tc=c.teacherFee*used,margin=c.fee-tc;return '<div class="course"><h3>'+esc(c.name)+'</h3><p>学生：'+esc(studentName(c.stu))+'　｜　老师：'+esc(teacherName(c.teacher))+'</p><p>时间：'+c.time+'–'+c.endTime+'　｜　Zoom：'+esc(c.zoom||'—')+'</p><p>课时包：<b>'+used+'</b> 已上 / <b>'+rem+'</b> 剩余 / '+c.total+' 总计</p><div class="progress"><i style="width:'+pct+'%"></i></div><p>学生收费：<span class="money">'+money(c.fee)+'</span>　老师已产生费用：'+money(tc)+'　差额：'+money(margin)+'</p><div class="actions" style="margin-top:10px"><button class="primary" onclick="editCourse(\''+c.id+'\')">修改 / 课时包</button></div></div>'}).join(''):'<div class="empty">还没有课程</div>';
- $('feeBody').innerHTML=db.courses.map(c=>'<tr><td>'+esc(c.name)+'</td><td>'+esc(studentName(c.stu))+'</td><td>'+esc(teacherName(c.teacher))+'</td><td>'+esc(subjectName(c.subject))+'</td><td>'+completed(c)+' / '+c.total+'</td><td>'+money(c.fee)+'</td><td>'+money(c.teacherFee*completed(c))+'</td><td>'+money(c.fee-c.teacherFee*completed(c))+'</td></tr>').join('')||'<tr><td colspan="8" class="empty">还没有费用记录</td></tr>';
-}
-function lessonCard(x){let done=x.status==='已上',c=x.c,used=completed(c),pct=Math.min(100,Math.round(used/c.total*100));return '<div class="lesson '+(done?'done':'')+'"><div class="lessonTime">'+c.time+'<small style="display:block;color:var(--muted);font-size:12px">'+c.endTime+' 结束</small></div><div class="lessonMain"><b>'+esc(c.name)+'</b><p>'+esc(studentName(c.stu))+'　｜　老师：'+esc(c.teacher)+'　｜　Zoom：'+esc(c.zoom||'—')+'</p><p>课时包：'+used+' 已上 / '+remaining(c)+' 剩余 / '+c.total+' 总计</p><div class="progress"><i style="width:'+pct+'%"></i></div></div><button class="lessonAction '+(done?'doneBtn':'primary')+'" onclick="mark(\''+c.id+'\',\''+x.date+'\')">'+(done?'✓ 已上':'标记已上')+'</button></div>'}
-function lessonHTML(x){return lessonCard(x)}
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));b.classList.add('active');$(b.dataset.page).classList.add('active');render()});
-$('filterDate').value=today();$('filterDate').onchange=render;
-function backup(){let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='APLUS-ACHIEVER-运营中心-备份.json';a.click();URL.revokeObjectURL(a.href)}
-function restore(){$('restoreFile').click()}$('restoreFile').onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.students||!x.courses)throw 0;db=x;save();alert('恢复成功')}catch(_){alert('备份文件格式不正确')}};r.readAsText(f)}
+function deleteCourse(){if(!editingCourseId)return;if(!confirm('确定删除整个课程及其排课记录吗？'))return;db.courses=db.courses.filter(c=>c.id!==editingCourseId);closeModal('courseModal');saveDB()}
 
-/* 老师 Rate 运营增强：固定为默认，支持按人数、每节手动指定，并保存每节历史 */
-function opNormalize(c){
- c.status=c.status||{};c.attendance=c.attendance||{};c.statusRate=c.statusRate||{};
- c.students=Array.isArray(c.students)?c.students:(c.stu?[c.stu]:[]);
- c.teacherRateMode=c.teacherRateMode||'fixed';c.teacherFee=Number(c.teacherFee||0);
- c.teacherRates=Array.isArray(c.teacherRates)&&c.teacherRates.length?c.teacherRates:[{min:1,max:999,rate:c.teacherFee}];
- return c
+function memberManager(id){
+  let c=db.courses.find(x=>x.id===id);if(!c)return;normalize(c);
+  let modal=document.createElement('div');modal.className='modal show';modal.id='memberModal';
+  modal.innerHTML='<div class="box wide"><h2>学生课时包</h2><p class="help">每位学生独立记录加入日期、退出日期、课时包和收费。退出学生不会从历史课次中消失。</p><div class="tableWrap"><table class="table"><thead><tr><th>学生</th><th>加入日期</th><th>退出日期</th><th>课时包</th><th>收费</th><th>已用</th><th>剩余</th><th>操作</th></tr></thead><tbody id="memberRows"></tbody></table></div><div class="form" style="margin-top:14px"><div class="field"><label>新增学生</label><select id="newMemberStudent">'+db.students.filter(s=>!c.members.some(m=>m.id===s.id&&!m.leaveDate)).map(s=>'<option value="'+esc(s.id)+'">'+esc(s.name)+'</option>').join('')+'</select></div><div class="field"><label>加入日期</label><input type="date" id="newMemberDate" value="'+today()+'"></div><div class="field"><label>课时包</label><input type="number" id="newMemberTotal" min="1" value="'+(c.total||10)+'"></div><div class="field"><label>收费（S$）</label><input type="number" id="newMemberFee" min="0" step=".01" value="'+(c.fee||0)+'"></div></div><div class="actionsBottom"><button onclick="closeModal('memberModal')">关闭</button><button class="primary" onclick="addMember(''+id+'')">＋ 加入学生</button><button class="primary" onclick="saveMembers(''+id+'')">保存成员资料</button></div></div>';
+  document.body.appendChild(modal);renderMemberRows(id)
 }
-db.courses.forEach(opNormalize);
-function opSelectedStudents(){return [...$('cStu').selectedOptions].map(o=>o.value)}
-function opSetStudents(ids){let set=new Set(ids||[]);[...$('cStu').options].forEach(o=>o.selected=set.has(o.value))}
-function opAddRate(min,max,rate){let row=document.createElement('div');row.className='rateRow';row.innerHTML='<input class="opMin" type="number" min="1" placeholder="最少人数" value="'+(min||'')+'"><input class="opMax" type="number" min="1" placeholder="最多人数" value="'+(max||'')+'"><input class="opRate" type="number" min="0" step=".01" placeholder="S$ / 节" value="'+(rate??'')+'"><button type="button" class="danger" onclick="this.parentElement.remove()">删除</button>';$('opRateRows').appendChild(row)}
-function opGetRates(){return [...document.querySelectorAll('.rateRow')].map(r=>({min:+r.querySelector('.opMin').value,max:+r.querySelector('.opMax').value,rate:+r.querySelector('.opRate').value})).filter(x=>x.min>0&&x.max>=x.min)}
-function opRateUI(){
- if($('cRateMode'))return;
- let f=$('cTeacherFee').parentElement;
- f.insertAdjacentHTML('afterend','<div class="field"><label>老师收费方式</label><select id="cRateMode" onchange="opToggleRate()"><option value="fixed">固定每节课</option><option value="tiered">按实际人数</option><option value="manual">每节手动指定</option></select></div><div class="field full" id="opRateWrap" style="display:none"><label>人数 Rate</label><div id="opRateRows"></div><button type="button" onclick="opAddRate()">＋ 增加人数档位</button><small style="display:block;margin-top:6px;color:var(--muted)">例如：1–1人 S$30、2–2人 S$40、3–4人 S$50、5–6人 S$70</small></div>');
- $('cStu').multiple=true;$('cStu').size=5;
+function renderMemberRows(id){
+  let c=db.courses.find(x=>x.id===id),body=$('memberRows');if(!body)return;
+  body.innerHTML=c.members.map(m=>'<tr><td><b>'+esc(studentName(m.id))+'</b></td><td><input class="mJoin" data-id="'+m.id+'" type="date" value="'+esc(m.joinDate||c.start)+'"></td><td><input class="mLeave" data-id="'+m.id+'" type="date" value="'+esc(m.leaveDate||'')+'"></td><td><input class="mTotal" data-id="'+m.id+'" type="number" min="0" value="'+Number(m.total||0)+'"></td><td><input class="mFee" data-id="'+m.id+'" type="number" min="0" step=".01" value="'+Number(m.fee||0)+'"></td><td>'+memberUsed(c,m)+'</td><td>'+memberRemaining(c,m)+'</td><td><button class="danger" onclick="exitMember(''+id+'',''+m.id+'')">退出</button></td></tr>').join('')||'<tr><td colspan="8" class="empty">还没有学生</td></tr>'
 }
-function opToggleRate(){if($('opRateWrap'))$('opRateWrap').style.display=$('cRateMode').value==='tiered'?'block':'none'}
-const opOldOpenCourse=openCourse;
-openCourse=function(){opOldOpenCourse();opRateUI();$('cRateMode').value='fixed';$('opRateRows').innerHTML='';opToggleRate();opSetStudents([])}
-const opOldEditCourse=editCourse;
-editCourse=function(id){
- opOldEditCourse(id);opRateUI();let c=opNormalize(db.courses.find(x=>x.id===id));$('cRateMode').value=c.teacherRateMode;opSetStudents(c.students);$('opRateRows').innerHTML='';c.teacherRates.forEach(r=>opAddRate(r.min,r.max,r.rate));opToggleRate()
+function addMember(id){
+  let c=db.courses.find(x=>x.id===id),sid=$('newMemberStudent').value,date=$('newMemberDate').value,total=Number($('newMemberTotal').value||0),fee=Number($('newMemberFee').value||0);
+  if(!sid||!date||total<=0)return alert('请选择学生，并填写加入日期和课时包');if(c.members.some(m=>m.id===sid&&!m.leaveDate))return alert('该学生已经是当前成员');
+  c.members.push({id:sid,joinDate:date,leaveDate:'',total,fee,status:'active'});c.students=memberIds(c,today());localStorage.setItem(KEY,JSON.stringify(db));closeModal('memberModal');renderAll()
 }
-const opOldSaveCourse=saveCourse;
-saveCourse=function(){
- let students=opSelectedStudents(),mode=$('cRateMode')?.value||'fixed',rates=opGetRates();
- if(!students.length){alert('请至少选择一名学生');return}
- if(mode==='tiered'&&!rates.length){alert('请至少设置一个人数 Rate');return}
- let old=editingCourseId?opNormalize(db.courses.find(x=>x.id===editingCourseId)):null;
- let oldStatus=old?.status||{},oldAtt=old?.attendance||{},oldRate=old?.statusRate||{};
- opOldSaveCourse();
- let c=editingCourseId?db.courses.find(x=>x.id===editingCourseId):db.courses[db.courses.length-1];
- if(!c)return;
- c.students=students;c.stu=students[0];c.teacherRateMode=mode;c.teacherRates=rates.length?rates:[{min:1,max:999,rate:Number(c.teacherFee||0)}];c.attendance=oldAtt;c.statusRate=oldRate;
- Object.keys(oldStatus).forEach(d=>{if(c.dates.includes(d))c.status[d]=oldStatus[d]});
- localStorage.setItem(KEY,JSON.stringify(db));render()
+function saveMembers(id){
+  let c=db.courses.find(x=>x.id===id);
+  document.querySelectorAll('.mJoin').forEach(e=>{let m=c.members.find(x=>x.id===e.dataset.id);if(m)m.joinDate=e.value});
+  document.querySelectorAll('.mLeave').forEach(e=>{let m=c.members.find(x=>x.id===e.dataset.id);if(m)m.leaveDate=e.value});
+  document.querySelectorAll('.mTotal').forEach(e=>{let m=c.members.find(x=>x.id===e.dataset.id);if(m)m.total=Number(e.value||0)});
+  document.querySelectorAll('.mFee').forEach(e=>{let m=c.members.find(x=>x.id===e.dataset.id);if(m)m.fee=Number(e.value||0)});
+  for(let m of c.members)if(m.leaveDate&&m.leaveDate<m.joinDate)return alert(studentName(m.id)+' 的退出日期不能早于加入日期');
+  c.students=memberIds(c,today());localStorage.setItem(KEY,JSON.stringify(db));closeModal('memberModal');renderAll()
 }
-function opAttendance(c,date){return Array.isArray(c.attendance?.[date])?c.attendance[date]:c.students}
-function opLessonRate(c,date){let n=opAttendance(c,date).length;if(c.teacherRateMode==='manual')return Number(c.statusRate?.[date]??c.teacherFee??0);if(c.teacherRateMode==='tiered'){let r=(c.teacherRates||[]).find(x=>n>=x.min&&n<=x.max);return r?Number(r.rate||0):0}return Number(c.teacherFee||0)}
-function opTeacherTotal(c){return c.dates.reduce((s,d)=>s+(c.status[d]==='已上'?opLessonRate(c,d):0),0)}
-function opOpenAttendance(id,date){
- let c=opNormalize(db.courses.find(x=>x.id===id)),box=document.querySelector('[data-op-att="'+id+'-'+date+'"]'),cur=opAttendance(c,date);
- box.innerHTML='<div class="attendanceBox" style="margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fafbfc"><b>本节实际出席学生</b><div style="margin-top:6px">'+c.students.map(id=>'<label style="display:inline-flex;align-items:center;margin:4px 12px 4px 0"><input class="opAtt" type="checkbox" value="'+id+'" '+(cur.includes(id)?'checked':'')+'>'+esc(studentName(id))+'</label>').join('')+'</div><button class="primary" onclick="opSaveAttendance(\\''+id+'\\',\\''+date+'\\')">保存并标记已上</button></div>';box.style.display='block'
+function exitMember(id,sid){
+  let c=db.courses.find(x=>x.id===id),m=c.members.find(x=>x.id===sid&&!x.leaveDate);if(!m)return;let d=prompt('请输入退出日期',today());if(d===null)return;if(d<m.joinDate)return alert('退出日期不能早于加入日期');m.leaveDate=d;m.status='left';c.students=memberIds(c,today());localStorage.setItem(KEY,JSON.stringify(db));renderMemberRows(id);renderAll()
 }
-function opSaveAttendance(id,date){
- let c=opNormalize(db.courses.find(x=>x.id===id)),box=document.querySelector('[data-op-att="'+id+'-'+date+'"]'),ids=[...box.querySelectorAll('.opAtt:checked')].map(x=>x.value);
- if(!ids.length&&!confirm('本节没有学生出席，仍然标记已上吗？'))return;
- c.attendance[date]=ids;
- if(c.teacherRateMode==='manual'){let v=prompt('请输入本节老师费用（S$）',String(c.teacherFee||0));if(v===null)return;c.statusRate[date]=Number(v||0)}
- c.status[date]='已上';save()
-}
-mark=function(id,date){
- let c=opNormalize(db.courses.find(x=>x.id===id));if(c.status[date]==='已上'){if(confirm('确定把这节课改回未上吗？')){c.status[date]='未上';save()}return}opOpenAttendance(id,date)
-}
-const opRenderBase=render;
-render=function(){
- db.courses.forEach(opNormalize);
- let inc=db.courses.reduce((a,c)=>a+c.fee,0),tc=db.courses.reduce((a,c)=>a+opTeacherTotal(c),0);
- opRenderBase();
- if($('sTeacher'))$('sTeacher').textContent=money(tc);if($('fTeacher'))$('fTeacher').textContent=money(tc);if($('fMargin'))$('fMargin').textContent=money(inc-tc);
- document.querySelectorAll('[data-op-att]').forEach(x=>{if(x.innerHTML&&x.style.display==='block'){}});
-}
-function opEnhanceCards(){
- document.querySelectorAll('.lesson').forEach(el=>{
-  let btn=el.querySelector('.lessonAction');if(!btn)return;
- });
-}
-const opOldLessonCard=lessonCard;
-lessonCard=function(x){
- let c=opNormalize(x.c),date=x.date,done=c.status[date]==='已上',att=opAttendance(c,date),rate=done?opLessonRate(c,date):0;
- let students=c.students.map(studentName).join('、');
- return '<div class="lesson '+(done?'done':'')+'"><div class="lessonTime">'+c.time+'<small style="display:block;color:var(--muted);font-size:12px">'+c.endTime+' 结束</small></div><div class="lessonMain"><b>'+esc(c.name)+'</b><p>'+esc(students)+'　｜　老师：'+esc(teacherName(c.teacher))+'　｜　Zoom：'+esc(c.zoom||'—')+'</p><p>课时包：'+completed(c)+' 已上 / '+remaining(c)+' 剩余 / '+c.total+' 总计</p><div class="progress"><i style="width:'+Math.min(100,Math.round(completed(c)/c.total*100))+'%"></i></div><p style="font-size:12px;color:var(--muted)">老师 Rate：'+(c.teacherRateMode==='tiered'?'按人数':c.teacherRateMode==='manual'?'每节手动':'固定每节')+(done?'　｜　实际 '+att.length+' 人　｜　'+money(rate):'')+'</p><div data-op-att="'+c.id+'-'+date+'" style="display:none"></div></div><button class="lessonAction '+(done?'doneBtn':'primary')+'" onclick="mark(\\''+c.id+'\\',\\''+date+'\\')">'+(done?'✓ 已上':'标记已上')+'</button></div>'
-}
-const opOldConflicts=conflicts;
-conflicts=function(){
- let a=allLessons(),out=[];for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++){let x=a[i],y=a[j];if(x.date!==y.date)continue;let overlap=x.c.time<y.c.endTime&&y.c.time<x.c.endTime,xs=opNormalize(x.c).students,ys=opNormalize(y.c).students,same=xs.some(id=>ys.includes(id));if(overlap&&(same||x.c.teacher===y.c.teacher))out.push({x,y,reason:same?'学生时间冲突':'老师时间冲突'})}return out
-}
-opRateUI();
 
-/* 课程成员生命周期：加入日期 / 退出日期；历史课次不受后续成员变化影响 */
-function opMemberList(c){
- c.members=Array.isArray(c.members)?c.members:[];
- if(!c.members.length && Array.isArray(c.students)){
-  c.members=c.students.map(id=>({id,joinDate:c.start||'',leaveDate:''}));
- }
- return c.members;
+function attendanceEditor(id,date){
+  let c=db.courses.find(x=>x.id===id),active=memberIds(c,date),cur=attendance(c,date),wrap=$('att-'+id+'-'+date);if(!wrap)return;
+  wrap.innerHTML='<div class="rateBox"><b>'+esc(date)+' 实际出席</b><div style="margin:8px 0">'+active.map(sid=>'<label style="display:inline-flex;align-items:center;gap:4px;margin:4px 12px 4px 0"><input class="attCheck" data-sid="'+sid+'" type="checkbox" '+(cur.includes(sid)?'checked':'')+'> '+esc(studentName(sid))+'</label>').join('')+'</div><button class="primary" onclick="saveAttendance(''+id+'',''+date+'')">保存出席并标记已上</button></div>';wrap.classList.remove('hidden')
 }
-function opActiveMembers(c,date){
- return opMemberList(c).filter(m=>m.joinDate<=date && (!m.leaveDate || m.leaveDate>=date));
+function saveAttendance(id,date){
+  let c=db.courses.find(x=>x.id===id),ids=[...document.querySelectorAll('#att-'+id+'-'+date+' .attCheck:checked')].map(x=>x.dataset.sid);c.attendance[date]=ids;
+  if(c.teacherRateMode==='manual'){let v=prompt('请输入本节老师费用（S$）',String(c.teacherFee));if(v===null)return;c.statusRate[date]=Number(v||0)}
+  c.status[date]='已上';saveDB()
 }
-function opMemberIds(c,date){return opActiveMembers(c,date).map(m=>m.id)}
-function opMemberText(c,date){
- return opActiveMembers(c,date).map(m=>studentName(m.id)).join('、')||'无在籍学生';
+function mark(id,date){
+  let c=db.courses.find(x=>x.id===id);if(!c)return;
+  if(c.status[date]==='已上'){if(confirm('确定把这节课改回“未上”吗？')){c.status[date]='未上';delete c.attendance[date];delete c.statusRate[date];saveDB()}return}
+  attendanceEditor(id,date)
 }
-function opNormalizeMembers(c){
- opMemberList(c);
- c.students=opActiveMembers(c,today()).map(m=>m.id);
- c.students=c.students.length?c.students:opMemberList(c).filter(m=>!m.leaveDate).map(m=>m.id);
- return c;
-}
-function opMemberManager(id){
- let c=opNormalize(db.courses.find(x=>x.id===id));if(!c)return;
- let rows=opMemberList(c).map(m=>'<tr><td>'+esc(studentName(m.id))+'</td><td><input class="memJoin" data-id="'+m.id+'" type="date" value="'+(m.joinDate||c.start||'')+'"></td><td><input class="memLeave" data-id="'+m.id+'" type="date" value="'+(m.leaveDate||'')+'"></td><td><button class="danger" onclick="opRemoveMember(\\''+id+'\\',\\''+m.id+'\\')">退出</button></td></tr>').join('');
- let opts=db.students.filter(st=>!c.members.some(m=>m.id===st.id)).map(st=>'<option value="'+st.id+'">'+esc(st.name)+'</option>').join('');
- let box=document.createElement('div');box.className='modal show';box.innerHTML='<div class="box"><h2>课程学生成员</h2><p class="muted">每位学生都有自己的加入/退出日期。历史课次不会因为后来退课而改变。</p><table class="table"><tr><th>学生</th><th>加入日期</th><th>退出日期</th><th></th></tr>'+rows+'</table><div class="form" style="margin-top:12px"><div class="field"><label>新增学生</label><select id="opNewMember">'+opts+'</select></div><div class="field"><label>加入日期</label><input id="opNewMemberDate" type="date" value="'+today()+'"></div></div><div class="actions" style="margin-top:14px"><button onclick="this.closest(\\'.modal\\').remove()">关闭</button><button class="primary" onclick="opAddMember(\\''+id+'\\',this)">＋ 加入学生</button><button class="primary" onclick="opSaveMembers(\\''+id+'\\',this)">保存成员日期</button></div></div>';document.body.appendChild(box)
-}
-function opAddMember(id,btn){
- let c=opNormalize(db.courses.find(x=>x.id===id)),sid=$('opNewMember').value,date=$('opNewMemberDate').value;if(!sid||!date){alert('请选择学生并填写加入日期');return}
- if(c.members.some(m=>m.id===sid&&!m.leaveDate)){alert('该学生已经是当前成员');return}
- c.members.push({id:sid,joinDate:date,leaveDate:''});c.students=opActiveMembers(c,today()).map(m=>m.id);localStorage.setItem(KEY,JSON.stringify(db));btn.closest('.modal').remove();render()
-}
-function opRemoveMember(id,sid){
- let c=opNormalize(db.courses.find(x=>x.id===id)),m=c.members.find(x=>x.id===sid&&!x.leaveDate);if(!m)return;
- let d=prompt('请输入退出日期（历史课次会保留）',today());if(d===null)return;if(d<m.joinDate){alert('退出日期不能早于加入日期');return}m.leaveDate=d;c.students=opActiveMembers(c,today()).map(x=>x.id);localStorage.setItem(KEY,JSON.stringify(db));document.querySelectorAll('.modal').forEach(x=>x.remove());render()
-}
-function opSaveMembers(id,btn){
- let c=opNormalize(db.courses.find(x=>x.id===id));
- [...document.querySelectorAll('.memJoin')].forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m&&el.value)m.joinDate=el.value});
- [...document.querySelectorAll('.memLeave')].forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m)m.leaveDate=el.value});
- for(let m of c.members){if(m.leaveDate&&m.leaveDate<m.joinDate){alert(studentName(m.id)+' 的退出日期不能早于加入日期');return}}
- c.students=opActiveMembers(c,today()).map(m=>m.id);localStorage.setItem(KEY,JSON.stringify(db));btn.closest('.modal').remove();render()
-}
-function opHistoryStudents(c,date){
- let ids=opMemberIds(c,date);return ids.map(id=>studentName(id)).join('、')||'无在籍学生';
-}
-function opAttendanceForDate(c,date){
- let active=opMemberIds(c,date),old=Array.isArray(c.attendance?.[date])?c.attendance[date]:active;
- return old.filter(id=>active.includes(id));
-}
-const opOldOpenAttendance2=opOpenAttendance;
-opOpenAttendance=function(id,date){
- let c=opNormalize(db.courses.find(x=>x.id===id)),box=document.querySelector('[data-op-att="'+id+'-'+date+'"]'),cur=opAttendanceForDate(c,date),active=opMemberIds(c,date);
- box.innerHTML='<div class="attendanceBox" style="margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fafbfc"><b>'+esc(date)+' 实际出席学生</b><div style="margin-top:6px">'+active.map(sid=>'<label style="display:inline-flex;align-items:center;margin:4px 12px 4px 0"><input class="opAtt" type="checkbox" value="'+sid+'" '+(cur.includes(sid)?'checked':'')+'>'+esc(studentName(sid))+'</label>').join('')+'</div><button class="primary" onclick="opSaveAttendance(\\''+id+'\\',\\''+date+'\\')">保存并标记已上</button></div>';box.style.display='block'
-}
-const opOldOpSaveAttendance2=opSaveAttendance;
-opSaveAttendance=function(id,date){
- let c=opNormalize(db.courses.find(x=>x.id===id)),box=document.querySelector('[data-op-att="'+id+'-'+date+'"]'),active=opMemberIds(c,date),ids=[...box.querySelectorAll('.opAtt:checked')].map(x=>x.value).filter(id=>active.includes(id));
- if(!ids.length&&!confirm('本节没有学生出席，仍然标记已上吗？'))return;
- c.attendance[date]=ids;if(c.teacherRateMode==='manual'){let v=prompt('请输入本节老师费用（S$）',String(c.teacherFee));if(v===null)return;c.statusRate[date]=Number(v||0)}c.status[date]='已上';save()
-}
-const opOldLessonCard2=lessonCard;
-lessonCard=function(x){
- let c=opNormalize(x.c),date=x.date,done=c.status[date]==='已上',att=opAttendanceForDate(c,date),rate=done?opLessonRate(c,date):0,students=opHistoryStudents(c,date);
- return '<div class="lesson '+(done?'done':'')+'"><div class="lessonTime">'+c.time+'<small style="display:block;color:var(--muted);font-size:12px">'+c.endTime+' 结束</small></div><div class="lessonMain"><b>'+esc(c.name)+'</b><p>'+esc(students)+'　｜　老师：'+esc(teacherName(c.teacher))+'　｜　Zoom：'+esc(c.zoom||'—')+'</p><p>课时包：'+completed(c)+' 已上 / '+remaining(c)+' 剩余 / '+c.total+' 总计</p><div class="progress"><i style="width:'+Math.min(100,Math.round(completed(c)/c.total*100))+'%"></i></div><p style="font-size:12px;color:var(--muted)">老师 Rate：'+(c.teacherRateMode==='tiered'?'按人数':c.teacherRateMode==='manual'?'每节手动':'固定每节')+(done?'　｜　实际 '+att.length+' 人　｜　'+money(rate):'')+'</p><div data-op-att="'+c.id+'-'+date+'" style="display:none"></div></div><div class="actions"><button onclick="opMemberManager(\\''+c.id+'\\')">学生成员</button><button class="lessonAction '+(done?'doneBtn':'primary')+'" onclick="mark(\\''+c.id+'\\',\\''+date+'\\')">'+(done?'✓ 已上':'标记已上')+'</button></div></div>'
-}
-const opOldConflicts2=conflicts;
-conflicts=function(){
- let a=allLessons(),out=[];for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++){let x=a[i],y=a[j];if(x.date!==y.date)continue;let overlap=x.c.time<y.c.endTime&&y.c.time<x.c.endTime,xs=opMemberIds(x.c,x.date),ys=opMemberIds(y.c,y.date),same=xs.some(id=>ys.includes(id));if(overlap&&(same||x.c.teacher===y.c.teacher))out.push({x,y,reason:same?'学生时间冲突':'老师时间冲突'})}return out
-}
-const opOldSaveCourse2=saveCourse;
-saveCourse=function(){
- opOldSaveCourse2();
- let c=editingCourseId?db.courses.find(x=>x.id===editingCourseId):db.courses[db.courses.length-1];if(!c)return;
- opNormalize(c);
- if(!c.members.length)c.members=c.students.map(id=>({id,joinDate:c.start||today(),leaveDate:''}));
- c.students=opActiveMembers(c,today()).map(m=>m.id);
- localStorage.setItem(KEY,JSON.stringify(db));render()
-}
-const opOldEditCourse2=editCourse;
-editCourse=function(id){opOldEditCourse2(id);let c=opNormalize(db.courses.find(x=>x.id===id));opMemberList(c);setTimeout(()=>{let b=document.querySelector('#courseModal .actions');if(b&&!b.querySelector('.memberBtn')){let x=document.createElement('button');x.className='memberBtn';x.textContent='学生成员管理';x.onclick=()=>{closeModal('courseModal');opMemberManager(id)};b.insertBefore(x,b.firstChild)}},0)}
 
-/* 老师结算明细：只读取已经完成的实际课次，可按老师、课程和实际日期区间筛选 */
-function settlementLessons(){
- let out=[];
- db.courses.forEach(c=>{
-  opNormalize(c);
-  c.dates.forEach(date=>{
-   if(c.status[date]==='已上'){
-    let active=opMemberIds(c,date),att=opAttendanceForDate(c,date),rate=opLessonRate(c,date);
-    out.push({date,c,active,att,rate,cost:rate});
-   }
-  });
- });
- return out.sort((a,b)=>(a.date+a.c.time).localeCompare(b.date+b.c.time));
+function lessonHtml(c,date){
+  let done=c.status[date]==='已上',att=attendance(c,date),rate=done?lessonRate(c,date):0,used=completedCount(c),pct=c.total?Math.min(100,Math.round(used/c.total*100)):0;
+  return '<div class="lesson '+(done?'done':'')+'"><div class="lessonTime">'+esc(c.time)+'<small style="display:block;color:var(--muted);font-size:12px">'+esc(c.endTime)+' 结束</small></div><div class="lessonMain"><b>'+esc(c.name)+'</b><p>'+esc(activeStudentsText(c,date))+'　｜　老师：'+esc(teacherName(c.teacher))+'　｜　Zoom：'+esc(c.zoom||'—')+'</p><p>课时：'+used+' 已上 / '+Math.max(0,c.total-used)+' 剩余 / '+c.total+' 总计</p><div class="progress"><i style="width:'+pct+'%"></i></div><p>老师 Rate：'+(c.teacherRateMode==='tiered'?'按实际人数':c.teacherRateMode==='manual'?'每节手动':'固定每节')+(done?'　｜　实际出席 '+att.length+' 人　｜　'+money(rate):'')+'</p><div id="att-'+c.id+'-'+date+'" class="hidden"></div></div><div class="actions"><button onclick="memberManager(''+c.id+'')">学生课时包</button><button onclick="editCourse(''+c.id+'')">修改</button><button class="'+(done?'success':'primary')+'" onclick="mark(''+c.id+'',''+date+'')">'+(done?'✓ 已上':'标记已上')+'</button></div></div>'
 }
-function settlementDateDefaults(){
- let now=new Date(),y=now.getFullYear(),m=now.getMonth();
- return {start:new Date(y,m,1).toISOString().slice(0,10),end:new Date(y,m+1,0).toISOString().slice(0,10)};
+
+function renderDashboard(){
+  let ls=lessonsOn(today()),done=ls.filter(x=>x.c.status[x.date]==='已上').length,inc=db.courses.reduce((s,c)=>s+courseRevenue(c),0),tc=db.courses.reduce((s,c)=>s+teacherTotal(c),0),low=db.courses.filter(c=>c.members.some(m=>memberRemaining(c,m)<=2&&memberRemaining(c,m)>=0)).length;
+  $('sToday').textContent=ls.length;$('sDone').textContent=done;$('sPending').textContent=ls.length-done;$('sLow').textContent=low;$('sIncome').textContent=money(inc);$('sTeacher').textContent=money(tc);
+  $('todayList').innerHTML=ls.length?ls.map(x=>lessonHtml(x.c,x.date)).join(''):'<div class="empty">今天没有课程</div>';
+  let cs=conflicts();$('conflicts').innerHTML=cs.length?cs.map(x=>'<div class="conflict"><b>'+esc(x.reason)+'</b>：'+esc(x.x.date)+' '+esc(x.x.c.time)+'–'+esc(x.x.c.endTime)+' '+esc(x.x.c.name)+' ↔ '+esc(x.y.c.time)+'–'+esc(x.y.c.endTime)+' '+esc(x.y.c.name)+'</div>').join(''):'<div class="empty ok">目前没有学生或老师时间冲突</div>'
 }
-function setSettlementRange(type){
- let now=new Date(),y=now.getFullYear(),m=now.getMonth(),start,end;
- if(type===1){start=new Date(y,m-1,1);end=new Date(y,m,0)}else{start=new Date(y,m,1);end=new Date(y,m+1,0)}
- $('settleStart').value=start.toISOString().slice(0,10);
- $('settleEnd').value=end.toISOString().slice(0,10);
- renderTeacherSettlement();
+function renderSchedule(){
+  let d=selectedDate(),ls=lessonsOn(d);$('dayTitle').innerHTML=(d===today()?'今天':fmtDate(d))+'<small id="daySub">'+d+'</small>';$('scheduleCards').innerHTML=ls.length?ls.map(x=>lessonHtml(x.c,d)).join(''):'<div class="empty">这一天没有课程</div>'
+}
+function renderStudents(){
+  $('studentList').innerHTML=db.students.length?'<table class="table"><thead><tr><th>学生</th><th>课程</th><th>剩余课时</th><th>课时包收费</th><th>操作</th></tr></thead><tbody>'+db.students.map(s=>{let ps=[];db.courses.forEach(c=>normalize(c).members.forEach(m=>{if(m.id===s.id)ps.push({c,m})}));return '<tr><td><b>'+esc(s.name)+'</b></td><td>'+ps.length+' 门</td><td>'+ps.reduce((a,x)=>a+memberRemaining(x.c,x.m),0)+'</td><td>'+money(ps.reduce((a,x)=>a+Number(x.m.fee||0),0))+'</td><td><button onclick="editStudent(''+s.id+'')">修改</button> <button class="danger" onclick="deleteStudent(''+s.id+'')">删除</button></td></tr>'}).join('')+'</tbody></table>':'<div class="empty">还没有学生</div>'
+}
+function renderTeachers(){
+  $('teacherList').innerHTML=db.teachers.length?'<table class="table"><thead><tr><th>老师</th><th>课程</th><th>已上</th><th>实际老师费用</th><th>操作</th></tr></thead><tbody>'+db.teachers.map(t=>{let cs=db.courses.filter(c=>c.teacher===t.id);return '<tr><td><b>'+esc(t.name)+'</b></td><td>'+cs.length+'</td><td>'+cs.reduce((s,c)=>s+completedCount(c),0)+'</td><td>'+money(cs.reduce((s,c)=>s+teacherTotal(c),0))+'</td><td><button onclick="editTeacher(''+t.id+'')">修改</button> <button class="danger" onclick="deleteTeacher(''+t.id+'')">删除</button></td></tr>'}).join('')+'</tbody></table>':'<div class="empty">还没有老师</div>'
+}
+function renderSubjects(){
+  $('subjectList').innerHTML=db.subjects.length?'<table class="table"><thead><tr><th>科目</th><th>年级 / 层级</th><th>课程数</th><th>操作</th></tr></thead><tbody>'+db.subjects.map(s=>'<tr><td><b>'+esc(s.name)+'</b></td><td>'+esc(s.level||'—')+'</td><td>'+db.courses.filter(c=>c.subject===s.id).length+'</td><td><button onclick="editSubject(''+s.id+'')">修改</button> <button class="danger" onclick="deleteSubject(''+s.id+'')">删除</button></td></tr>').join('')+'</tbody></table>':'<div class="empty">还没有科目</div>'
+}
+function renderCourses(){
+  $('courseCards').innerHTML=db.courses.length?'<div class="cards">'+db.courses.map(c=>{normalize(c);let rev=courseRevenue(c),tc=teacherTotal(c),used=completedCount(c);return '<div class="card"><h3>'+esc(c.name)+'</h3><p>老师：'+esc(teacherName(c.teacher))+'　｜　科目：'+esc(subjectName(c.subject))+'</p><p>时间：'+esc(c.time)+'–'+esc(c.endTime)+'　｜　Zoom：'+esc(c.zoom||'—')+'</p><p>学生：'+c.members.length+' 人　｜　已上：'+used+' 节　｜　收费：'+money(rev)+'</p><p>'+c.members.map(m=>esc(studentName(m.id))+'：'+memberUsed(c,m)+' 已用 / '+memberRemaining(c,m)+' 剩余 · '+money(m.fee)).join('<br>')+'</p><p>老师已产生费用：'+money(tc)+'　｜　差额：'+money(rev-tc)+'</p><div class="actions"><button onclick="memberManager(''+c.id+'')">学生课时包</button><button class="primary" onclick="editCourse(''+c.id+'')">修改课程</button></div></div>'}).join('')+'</div>':'<div class="empty">还没有课程</div>'
+}
+function renderFees(){
+  let inc=db.courses.reduce((s,c)=>s+courseRevenue(c),0),tc=db.courses.reduce((s,c)=>s+teacherTotal(c),0);$('fIncome').textContent=money(inc);$('fTeacher').textContent=money(tc);$('fMargin').textContent=money(inc-tc);
+  $('feeBody').innerHTML=db.courses.flatMap(c=>{let rev=courseRevenue(c),cost=teacherTotal(c);return c.members.map(m=>{let share=rev?Number(m.fee||0)/rev:0,allocated=cost*share;return '<tr><td>'+esc(c.name)+'</td><td>'+esc(studentName(m.id))+'</td><td>'+esc(teacherName(c.teacher))+'</td><td>'+esc(subjectName(c.subject))+'</td><td>'+memberUsed(c,m)+' / '+m.total+'（剩 '+memberRemaining(c,m)+'）</td><td>'+money(m.fee)+'</td><td>'+money(allocated)+'</td><td>'+money(Number(m.fee||0)-allocated)+'</td></tr>'})}).join('')||'<tr><td colspan="8" class="empty">还没有费用记录</td></tr>'
+}
+function settlementRows(){
+  let out=[];db.courses.forEach(c=>{normalize(c);c.dates.forEach(date=>{if(c.status[date]==='已上')out.push({date,c,students:activeStudentsText(c,date),att:attendance(c,date),rate:lessonRate(c,date)})})});return out.sort((a,b)=>(a.date+a.c.time).localeCompare(b.date+b.c.time))
 }
 function settlementInit(){
- let d=settlementDateDefaults();
- if(!$('settleStart').value)$('settleStart').value=d.start;
- if(!$('settleEnd').value)$('settleEnd').value=d.end;
- let tv=$('settleTeacher').value,cv=$('settleCourse').value;
- $('settleTeacher').innerHTML='<option value="">全部老师</option>'+db.teachers.map(t=>'<option value="'+t.id+'">'+esc(t.name)+'</option>').join('');
- $('settleTeacher').value=tv;
- let filteredCourses=db.courses.filter(c=>!$('settleTeacher').value||c.teacher===$('settleTeacher').value);
- $('settleCourse').innerHTML='<option value="">全部课程</option>'+filteredCourses.map(c=>'<option value="'+c.id+'">'+esc(c.name)+'</option>').join('');
- $('settleCourse').value=filteredCourses.some(c=>c.id===cv)?cv:'';
+  let now=new Date(),start=new Date(now.getFullYear(),now.getMonth(),1),end=new Date(now.getFullYear(),now.getMonth()+1,0);
+  if(!$('settleStart').value)$('settleStart').value=start.toISOString().slice(0,10);if(!$('settleEnd').value)$('settleEnd').value=end.toISOString().slice(0,10);
+  let t=$('settleTeacher').value,c=$('settleCourse').value;$('settleTeacher').innerHTML='<option value="">全部老师</option>'+db.teachers.map(x=>'<option value="'+x.id+'">'+esc(x.name)+'</option>').join('');$('settleTeacher').value=t;
+  let cs=db.courses.filter(x=>!t||x.teacher===t);$('settleCourse').innerHTML='<option value="">全部课程</option>'+cs.map(x=>'<option value="'+x.id+'">'+esc(x.name)+'</option>').join('');$('settleCourse').value=cs.some(x=>x.id===c)?c:''
 }
-function renderTeacherSettlement(){
- if(!$('settlementBody'))return;
- settlementInit();
- let start=$('settleStart').value,end=$('settleEnd').value,teacher=$('settleTeacher').value,course=$('settleCourse').value;
- let rows=settlementLessons().filter(x=>(!start||x.date>=start)&&(!end||x.date<=end)&&(!teacher||x.c.teacher===teacher)&&(!course||x.c.id===course));
- let total=rows.reduce((s,x)=>s+x.cost,0);
- $('settlementSummary').innerHTML='<b>结算期间：</b>'+(start||'不限')+' ～ '+(end||'不限')+'　 <b>实际已上：</b>'+rows.length+' 节　 <b>老师费用：</b><span class="money">'+money(total)+'</span>';
- $('settlementBody').innerHTML=rows.length?rows.map(x=>'<tr><td>'+esc(x.date)+'</td><td>'+esc(x.c.name)+'</td><td>'+esc(subjectName(x.c.subject))+'</td><td>'+esc(opHistoryStudents(x.c,x.date))+'</td><td>'+x.att.length+' 人</td><td>'+money(x.rate)+'</td><td class="money">'+money(x.cost)+'</td></tr>').join(''):'<tr><td colspan="7" class="empty">这个日期范围内没有已完成的实际课次</td></tr>';
+function renderSettlement(){
+  if(!$('settlementBody'))return;settlementInit();let s=$('settleStart').value,e=$('settleEnd').value,t=$('settleTeacher').value,cid=$('settleCourse').value;
+  let rows=settlementRows().filter(x=>(!s||x.date>=s)&&(!e||x.date<=e)&&(!t||x.c.teacher===t)&&(!cid||x.c.id===cid)),total=rows.reduce((a,x)=>a+x.rate,0);
+  $('settlementSummary').innerHTML='期间：'+esc(s||'不限')+' ～ '+esc(e||'不限')+'　｜　实际已上：<b>'+rows.length+' 节</b>　｜　老师费用：<b>'+money(total)+'</b>';
+  $('settlementBody').innerHTML=rows.length?rows.map(x=>'<tr><td>'+x.date+'</td><td>'+esc(x.c.name)+'</td><td>'+esc(subjectName(x.c.subject))+'</td><td>'+esc(x.students)+'</td><td>'+x.att.length+' 人</td><td>'+money(x.rate)+'</td><td class="money">'+money(x.rate)+'</td></tr>').join(''):'<tr><td colspan="7" class="empty">这个日期范围内没有已完成的课次</td></tr>'
 }
-function printTeacherSettlement(){
- renderTeacherSettlement();
- let teacher=$('settleTeacher').value?teacherName($('settleTeacher').value):'全部老师';
- let start=$('settleStart').value,end=$('settleEnd').value;
- let rows=settlementLessons().filter(x=>(!start||x.date>=start)&&(!end||x.date<=end)&&(!teacher||x.c.teacher===$('settleTeacher').value)&&(!$('settleCourse').value||x.c.id===$('settleCourse').value));
- let total=rows.reduce((s,x)=>s+x.cost,0);
- let html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>老师结算明细</title><style>body{font-family:Arial,"Microsoft YaHei",sans-serif;padding:30px;color:#172033}h1{font-size:22px}p{color:#555}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{border-bottom:1px solid #ddd;padding:9px;text-align:left}th{background:#f5f7fa}.total{font-size:18px;font-weight:700;margin-top:20px}</style></head><body><h1>APLUS ACHIEVER 老师结算明细</h1><p>老师：'+esc(teacher)+'　｜　期间：'+esc(start||'不限')+' ～ '+esc(end||'不限')+'</p><table><thead><tr><th>日期</th><th>课程</th><th>科目</th><th>学生</th><th>实际出席</th><th>老师 Rate</th><th>本节费用</th></tr></thead><tbody>'+rows.map(x=>'<tr><td>'+esc(x.date)+'</td><td>'+esc(x.c.name)+'</td><td>'+esc(subjectName(x.c.subject))+'</td><td>'+esc(opHistoryStudents(x.c,x.date))+'</td><td>'+x.att.length+' 人</td><td>'+money(x.rate)+'</td><td>'+money(x.cost)+'</td></tr>').join('')+'</tbody></table><div class="total">实际已上：'+rows.length+' 节　｜　老师费用合计：'+money(total)+'</div><script>window.onload=function(){window.print()}<\/script></body></html>';
- let w=window.open('','_blank');if(!w){alert('浏览器阻止了弹窗，请允许本网站打开新窗口后再试。');return}w.document.write(html);w.document.close();
+function setSettlementRange(type){
+  let n=new Date(),y=n.getFullYear(),m=n.getMonth(),s,e;if(type===1){s=new Date(y,m-1,1);e=new Date(y,m,0)}else{s=new Date(y,m,1);e=new Date(y,m+1,0)}$('settleStart').value=s.toISOString().slice(0,10);$('settleEnd').value=e.toISOString().slice(0,10);renderSettlement()
 }
-const opRenderWithSettlement=render;
-render=function(){opRenderWithSettlement();renderTeacherSettlement();};
-renderTeacherSettlement();
-render();
-
-
-/* 学生独立课时包 / 收费 */
-function opEnsurePackages(c){
- opMemberList(c);
- c.members.forEach(m=>{if(m.total===undefined)m.total=Number(c.total||0);if(m.fee===undefined)m.fee=Number(c.fee||0);if(!m.status)m.status='active';});
- return c.members;
+function printSettlement(){
+  renderSettlement();let s=$('settleStart').value,e=$('settleEnd').value,t=$('settleTeacher').value,cid=$('settleCourse').value,rows=settlementRows().filter(x=>(!s||x.date>=s)&&(!e||x.date<=e)&&(!t||x.c.teacher===t)&&(!cid||x.c.id===cid)),total=rows.reduce((a,x)=>a+x.rate,0),tn=t?teacherName(t):'全部老师';
+  let html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>老师结算明细</title><style>body{font-family:Arial,"Microsoft YaHei";padding:30px}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}th{background:#f5f7fa}.total{margin-top:18px;font-size:18px;font-weight:700}</style></head><body><h1>APLUS ACHIEVER 老师结算明细</h1><p>老师：'+esc(tn)+'　｜　期间：'+esc(s||'不限')+' ～ '+esc(e||'不限')+'</p><table><thead><tr><th>日期</th><th>课程</th><th>科目</th><th>学生</th><th>实际出席</th><th>老师 Rate</th><th>本节费用</th></tr></thead><tbody>'+rows.map(x=>'<tr><td>'+x.date+'</td><td>'+esc(x.c.name)+'</td><td>'+esc(subjectName(x.c.subject))+'</td><td>'+esc(x.students)+'</td><td>'+x.att.length+' 人</td><td>'+money(x.rate)+'</td><td>'+money(x.rate)+'</td></tr>').join('')+'</tbody></table><div class="total">实际已上：'+rows.length+' 节　｜　老师费用合计：'+money(total)+'</div><script>window.onload=function(){window.print()}<\/script></body></html>';
+  let w=window.open('','_blank');if(!w)return alert('浏览器阻止了弹窗，请允许新窗口后再试。');w.document.write(html);w.document.close()
 }
-function opMemberUsed(c,m){return c.dates.filter(d=>c.status[d]==='已上'&&m.joinDate<=d&&(!m.leaveDate||m.leaveDate>=d)).length}
-function opMemberRemaining(c,m){return Math.max(0,Number(m.total||0)-opMemberUsed(c,m))}
-function opCourseRevenue(c){return opEnsurePackages(c).reduce((s,m)=>s+Number(m.fee||0),0)}
-function opStudentPackages(sid){let out=[];db.courses.forEach(c=>opEnsurePackages(c).forEach(m=>{if(m.id===sid)out.push({c,m,used:opMemberUsed(c,m),remaining:opMemberRemaining(c,m)})}));return out}
-opMemberManager=function(id){
- let c=opNormalize(db.courses.find(x=>x.id===id));opEnsurePackages(c);
- let rows=c.members.map(m=>{let used=opMemberUsed(c,m),rem=opMemberRemaining(c,m);return '<tr><td><b>'+esc(studentName(m.id))+'</b></td><td><input class="memJoin" data-id="'+m.id+'" type="date" value="'+(m.joinDate||c.start||'')+'"></td><td><input class="memLeave" data-id="'+m.id+'" type="date" value="'+(m.leaveDate||'')+'"></td><td><input class="memTotal" data-id="'+m.id+'" type="number" min="0" value="'+Number(m.total||0)+'"></td><td><input class="memFee" data-id="'+m.id+'" type="number" min="0" step=".01" value="'+Number(m.fee||0)+'"></td><td>'+used+' / '+rem+'</td><td><button class="danger" onclick="opRemoveMember(\\''+id+'\\',\\''+m.id+'\\')">退出</button></td></tr>'}).join('');
- let opts=db.students.filter(st=>!c.members.some(m=>m.id===st.id&&!m.leaveDate)).map(st=>'<option value="'+st.id+'">'+esc(st.name)+'</option>').join('');
- let box=document.createElement('div');box.className='modal show';
- box.innerHTML='<div class="box" style="width:min(1050px,100%)"><h2>课程学生成员 / 独立课时包</h2><p style="color:var(--muted)">每个学生独立记录加入日期、退出日期、课时包总数和收费。</p><div style="overflow:auto"><table class="table"><tr><th>学生</th><th>加入日期</th><th>退出日期</th><th>课时包</th><th>收费</th><th>已用 / 剩余</th><th></th></tr>'+rows+'</table></div><div class="form" style="margin-top:14px"><div class="field"><label>新增学生</label><select id="opNewMember">'+opts+'</select></div><div class="field"><label>加入日期</label><input id="opNewMemberDate" type="date" value="'+today()+'"></div><div class="field"><label>课时包</label><input id="opNewMemberTotal" type="number" min="1" value="'+Number(c.total||10)+'"></div><div class="field"><label>收费（S$）</label><input id="opNewMemberFee" type="number" min="0" step=".01" value="'+Number(c.fee||0)+'"></div></div><div class="actions"><button onclick="this.closest(\\'.modal\\').remove()">关闭</button><button class="primary" onclick="opAddMemberPackage(\\''+id+'\\',this)">＋ 加入学生</button><button class="primary" onclick="opSaveMemberPackages(\\''+id+'\\',this)">保存成员资料</button></div></div>';
- document.body.appendChild(box);
-};
-function opAddMemberPackage(id,btn){let c=opNormalize(db.courses.find(x=>x.id===id));opEnsurePackages(c);let sid=$('opNewMember').value,date=$('opNewMemberDate').value,total=Number($('opNewMemberTotal').value||0),fee=Number($('opNewMemberFee').value||0);if(!sid||!date||total<=0){alert('请选择学生，并填写加入日期和课时包');return}if(c.members.some(m=>m.id===sid&&!m.leaveDate)){alert('该学生已经是当前成员');return}c.members.push({id:sid,joinDate:date,leaveDate:'',total,fee,status:'active'});c.students=opActiveMembers(c,today()).map(m=>m.id);localStorage.setItem(KEY,JSON.stringify(db));btn.closest('.modal').remove();render()}
-function opSaveMemberPackages(id,btn){let c=opNormalize(db.courses.find(x=>x.id===id));opEnsurePackages(c);document.querySelectorAll('.memJoin').forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m&&el.value)m.joinDate=el.value});document.querySelectorAll('.memLeave').forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m)m.leaveDate=el.value});document.querySelectorAll('.memTotal').forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m)m.total=Number(el.value||0)});document.querySelectorAll('.memFee').forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m)m.fee=Number(el.value||0)});for(let m of c.members){if(m.leaveDate&&m.leaveDate<m.joinDate){alert(studentName(m.id)+' 的退出日期不能早于加入日期');return}}c.students=opActiveMembers(c,today()).map(m=>m.id);localStorage.setItem(KEY,JSON.stringify(db));btn.closest('.modal').remove();render()}
-const opRenderPackageBase=render;
-render=function(){opRenderPackageBase();opRenderPackages()};
-function opRenderPackages(){
- db.courses.forEach(opEnsurePackages);
- let inc=db.courses.reduce((a,c)=>a+opCourseRevenue(c),0),tc=db.courses.reduce((a,c)=>a+opTeacherTotal(c),0);
- if($('sIncome'))$('sIncome').textContent=money(inc);if($('fIncome'))$('fIncome').textContent=money(inc);if($('fMargin'))$('fMargin').textContent=money(inc-tc);
- if($('studentList'))$('studentList').innerHTML=db.students.length?'<table class="table"><thead><tr><th>学生</th><th>课程</th><th>剩余课时</th><th>课时包费用</th><th>操作</th></tr></thead><tbody>'+db.students.map(s=>{let ps=opStudentPackages(s.id);return '<tr><td><b>'+esc(s.name)+'</b></td><td>'+ps.length+' 门</td><td>'+ps.reduce((a,x)=>a+x.remaining,0)+'</td><td>'+money(ps.reduce((a,x)=>a+Number(x.m.fee||0),0))+'</td><td><button onclick="editStudent(\\''+s.id+'\\')">修改</button> <button class="danger" onclick="deleteStudent(\\''+s.id+'\\')">删除</button></td></tr>'}).join('')+'</tbody></table>':'<div class="empty">还没有学生</div>';
- if($('courseCards'))$('courseCards').innerHTML=db.courses.length?db.courses.map(c=>{let members=opEnsurePackages(c),revenue=opCourseRevenue(c),tc=opTeacherTotal(c),margin=revenue-tc;return '<div class="course"><h3>'+esc(c.name)+'</h3><p>老师：'+esc(teacherName(c.teacher))+'　｜　学生：'+members.length+' 人</p><p>时间：'+c.time+'–'+c.endTime+'　｜　Zoom：'+esc(c.zoom||'—')+'</p><p>学生课时包：'+members.map(m=>esc(studentName(m.id))+' '+opMemberUsed(c,m)+' 已用 / '+opMemberRemaining(c,m)+' 剩余 · '+money(m.fee)).join('　｜　')+'</p><p>学生收费合计：<span class="money">'+money(revenue)+'</span>　老师已产生费用：'+money(tc)+'　差额：'+money(margin)+'</p><div class="actions"><button onclick="opMemberManager(\\''+c.id+'\\')">学生课时包</button> <button class="primary" onclick="editCourse(\\''+c.id+'\\')">修改课程</button></div></div>'}).join(''):'<div class="empty">还没有课程</div>';
- if($('feeBody'))$('feeBody').innerHTML=db.courses.flatMap(c=>{let revenue=opCourseRevenue(c),tc=opTeacherTotal(c);return opEnsurePackages(c).map(m=>{let used=opMemberUsed(c,m),rem=opMemberRemaining(c,m),share=revenue?Number(m.fee||0)/revenue:0;return '<tr><td>'+esc(c.name)+'</td><td>'+esc(studentName(m.id))+'</td><td>'+esc(teacherName(c.teacher))+'</td><td>'+esc(subjectName(c.subject))+'</td><td>'+used+' / '+Number(m.total||0)+'（剩 '+rem+'）</td><td>'+money(m.fee)+'</td><td>'+money(tc*share)+'</td><td>'+money(Number(m.fee||0)-tc*share)+'</td></tr>'})}).join('')||'<tr><td colspan="8" class="empty">还没有费用记录</td></tr>';
+function closeModal(id){$(id)?.remove()}
+function renderAll(){
+  db.courses.forEach(migrateCourse);
+  if(!$('filterDate').value)$('filterDate').value=today();
+  renderDashboard();renderSchedule();renderStudents();renderTeachers();renderSubjects();renderCourses();renderFees();renderSettlement()
 }
-db.courses.forEach(c=>opEnsurePackages(c));localStorage.setItem(KEY,JSON.stringify(db));render();
-
+renderAll();
 </script>
-</body></html>
+</body>
+</html>
