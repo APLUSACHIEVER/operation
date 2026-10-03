@@ -239,7 +239,90 @@ conflicts=function(){
  let a=allLessons(),out=[];for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++){let x=a[i],y=a[j];if(x.date!==y.date)continue;let overlap=x.c.time<y.c.endTime&&y.c.time<x.c.endTime,xs=opNormalize(x.c).students,ys=opNormalize(y.c).students,same=xs.some(id=>ys.includes(id));if(overlap&&(same||x.c.teacher===y.c.teacher))out.push({x,y,reason:same?'学生时间冲突':'老师时间冲突'})}return out
 }
 opRateUI();
+
+/* 课程成员生命周期：加入日期 / 退出日期；历史课次不受后续成员变化影响 */
+function opMemberList(c){
+ c.members=Array.isArray(c.members)?c.members:[];
+ if(!c.members.length && Array.isArray(c.students)){
+  c.members=c.students.map(id=>({id,joinDate:c.start||'',leaveDate:''}));
+ }
+ return c.members;
+}
+function opActiveMembers(c,date){
+ return opMemberList(c).filter(m=>m.joinDate<=date && (!m.leaveDate || m.leaveDate>=date));
+}
+function opMemberIds(c,date){return opActiveMembers(c,date).map(m=>m.id)}
+function opMemberText(c,date){
+ return opActiveMembers(c,date).map(m=>studentName(m.id)).join('、')||'无在籍学生';
+}
+function opNormalizeMembers(c){
+ opMemberList(c);
+ c.students=opActiveMembers(c,today()).map(m=>m.id);
+ c.students=c.students.length?c.students:opMemberList(c).filter(m=>!m.leaveDate).map(m=>m.id);
+ return c;
+}
+function opMemberManager(id){
+ let c=opNormalize(db.courses.find(x=>x.id===id));if(!c)return;
+ let rows=opMemberList(c).map(m=>'<tr><td>'+esc(studentName(m.id))+'</td><td><input class="memJoin" data-id="'+m.id+'" type="date" value="'+(m.joinDate||c.start||'')+'"></td><td><input class="memLeave" data-id="'+m.id+'" type="date" value="'+(m.leaveDate||'')+'"></td><td><button class="danger" onclick="opRemoveMember(\\''+id+'\\',\\''+m.id+'\\')">退出</button></td></tr>').join('');
+ let opts=db.students.filter(st=>!c.members.some(m=>m.id===st.id)).map(st=>'<option value="'+st.id+'">'+esc(st.name)+'</option>').join('');
+ let box=document.createElement('div');box.className='modal show';box.innerHTML='<div class="box"><h2>课程学生成员</h2><p class="muted">每位学生都有自己的加入/退出日期。历史课次不会因为后来退课而改变。</p><table class="table"><tr><th>学生</th><th>加入日期</th><th>退出日期</th><th></th></tr>'+rows+'</table><div class="form" style="margin-top:12px"><div class="field"><label>新增学生</label><select id="opNewMember">'+opts+'</select></div><div class="field"><label>加入日期</label><input id="opNewMemberDate" type="date" value="'+today()+'"></div></div><div class="actions" style="margin-top:14px"><button onclick="this.closest(\\'.modal\\').remove()">关闭</button><button class="primary" onclick="opAddMember(\\''+id+'\\',this)">＋ 加入学生</button><button class="primary" onclick="opSaveMembers(\\''+id+'\\',this)">保存成员日期</button></div></div>';document.body.appendChild(box)
+}
+function opAddMember(id,btn){
+ let c=opNormalize(db.courses.find(x=>x.id===id)),sid=$('opNewMember').value,date=$('opNewMemberDate').value;if(!sid||!date){alert('请选择学生并填写加入日期');return}
+ if(c.members.some(m=>m.id===sid&&!m.leaveDate)){alert('该学生已经是当前成员');return}
+ c.members.push({id:sid,joinDate:date,leaveDate:''});c.students=opActiveMembers(c,today()).map(m=>m.id);localStorage.setItem(KEY,JSON.stringify(db));btn.closest('.modal').remove();render()
+}
+function opRemoveMember(id,sid){
+ let c=opNormalize(db.courses.find(x=>x.id===id)),m=c.members.find(x=>x.id===sid&&!x.leaveDate);if(!m)return;
+ let d=prompt('请输入退出日期（历史课次会保留）',today());if(d===null)return;if(d<m.joinDate){alert('退出日期不能早于加入日期');return}m.leaveDate=d;c.students=opActiveMembers(c,today()).map(x=>x.id);localStorage.setItem(KEY,JSON.stringify(db));document.querySelectorAll('.modal').forEach(x=>x.remove());render()
+}
+function opSaveMembers(id,btn){
+ let c=opNormalize(db.courses.find(x=>x.id===id));
+ [...document.querySelectorAll('.memJoin')].forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m&&el.value)m.joinDate=el.value});
+ [...document.querySelectorAll('.memLeave')].forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m)m.leaveDate=el.value});
+ for(let m of c.members){if(m.leaveDate&&m.leaveDate<m.joinDate){alert(studentName(m.id)+' 的退出日期不能早于加入日期');return}}
+ c.students=opActiveMembers(c,today()).map(m=>m.id);localStorage.setItem(KEY,JSON.stringify(db));btn.closest('.modal').remove();render()
+}
+function opHistoryStudents(c,date){
+ let ids=opMemberIds(c,date);return ids.map(id=>studentName(id)).join('、')||'无在籍学生';
+}
+function opAttendanceForDate(c,date){
+ let active=opMemberIds(c,date),old=Array.isArray(c.attendance?.[date])?c.attendance[date]:active;
+ return old.filter(id=>active.includes(id));
+}
+const opOldOpenAttendance2=opOpenAttendance;
+opOpenAttendance=function(id,date){
+ let c=opNormalize(db.courses.find(x=>x.id===id)),box=document.querySelector('[data-op-att="'+id+'-'+date+'"]'),cur=opAttendanceForDate(c,date),active=opMemberIds(c,date);
+ box.innerHTML='<div class="attendanceBox" style="margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fafbfc"><b>'+esc(date)+' 实际出席学生</b><div style="margin-top:6px">'+active.map(sid=>'<label style="display:inline-flex;align-items:center;margin:4px 12px 4px 0"><input class="opAtt" type="checkbox" value="'+sid+'" '+(cur.includes(sid)?'checked':'')+'>'+esc(studentName(sid))+'</label>').join('')+'</div><button class="primary" onclick="opSaveAttendance(\\''+id+'\\',\\''+date+'\\')">保存并标记已上</button></div>';box.style.display='block'
+}
+const opOldOpSaveAttendance2=opSaveAttendance;
+opSaveAttendance=function(id,date){
+ let c=opNormalize(db.courses.find(x=>x.id===id)),box=document.querySelector('[data-op-att="'+id+'-'+date+'"]'),active=opMemberIds(c,date),ids=[...box.querySelectorAll('.opAtt:checked')].map(x=>x.value).filter(id=>active.includes(id));
+ if(!ids.length&&!confirm('本节没有学生出席，仍然标记已上吗？'))return;
+ c.attendance[date]=ids;if(c.teacherRateMode==='manual'){let v=prompt('请输入本节老师费用（S$）',String(c.teacherFee));if(v===null)return;c.statusRate[date]=Number(v||0)}c.status[date]='已上';save()
+}
+const opOldLessonCard2=lessonCard;
+lessonCard=function(x){
+ let c=opNormalize(x.c),date=x.date,done=c.status[date]==='已上',att=opAttendanceForDate(c,date),rate=done?opLessonRate(c,date):0,students=opHistoryStudents(c,date);
+ return '<div class="lesson '+(done?'done':'')+'"><div class="lessonTime">'+c.time+'<small style="display:block;color:var(--muted);font-size:12px">'+c.endTime+' 结束</small></div><div class="lessonMain"><b>'+esc(c.name)+'</b><p>'+esc(students)+'　｜　老师：'+esc(teacherName(c.teacher))+'　｜　Zoom：'+esc(c.zoom||'—')+'</p><p>课时包：'+completed(c)+' 已上 / '+remaining(c)+' 剩余 / '+c.total+' 总计</p><div class="progress"><i style="width:'+Math.min(100,Math.round(completed(c)/c.total*100))+'%"></i></div><p style="font-size:12px;color:var(--muted)">老师 Rate：'+(c.teacherRateMode==='tiered'?'按人数':c.teacherRateMode==='manual'?'每节手动':'固定每节')+(done?'　｜　实际 '+att.length+' 人　｜　'+money(rate):'')+'</p><div data-op-att="'+c.id+'-'+date+'" style="display:none"></div></div><div class="actions"><button onclick="opMemberManager(\\''+c.id+'\\')">学生成员</button><button class="lessonAction '+(done?'doneBtn':'primary')+'" onclick="mark(\\''+c.id+'\\',\\''+date+'\\')">'+(done?'✓ 已上':'标记已上')+'</button></div></div>'
+}
+const opOldConflicts2=conflicts;
+conflicts=function(){
+ let a=allLessons(),out=[];for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++){let x=a[i],y=a[j];if(x.date!==y.date)continue;let overlap=x.c.time<y.c.endTime&&y.c.time<x.c.endTime,xs=opMemberIds(x.c,x.date),ys=opMemberIds(y.c,y.date),same=xs.some(id=>ys.includes(id));if(overlap&&(same||x.c.teacher===y.c.teacher))out.push({x,y,reason:same?'学生时间冲突':'老师时间冲突'})}return out
+}
+const opOldSaveCourse2=saveCourse;
+saveCourse=function(){
+ opOldSaveCourse2();
+ let c=editingCourseId?db.courses.find(x=>x.id===editingCourseId):db.courses[db.courses.length-1];if(!c)return;
+ opNormalize(c);
+ if(!c.members.length)c.members=c.students.map(id=>({id,joinDate:c.start||today(),leaveDate:''}));
+ c.students=opActiveMembers(c,today()).map(m=>m.id);
+ localStorage.setItem(KEY,JSON.stringify(db));render()
+}
+const opOldEditCourse2=editCourse;
+editCourse=function(id){opOldEditCourse2(id);let c=opNormalize(db.courses.find(x=>x.id===id));opMemberList(c);setTimeout(()=>{let b=document.querySelector('#courseModal .actions');if(b&&!b.querySelector('.memberBtn')){let x=document.createElement('button');x.className='memberBtn';x.textContent='学生成员管理';x.onclick=()=>{closeModal('courseModal');opMemberManager(id)};b.insertBefore(x,b.firstChild)}},0)}
 render();
+
 
 </script>
 </body></html>
