@@ -157,6 +157,89 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelect
 $('filterDate').value=today();$('filterDate').onchange=render;
 function backup(){let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='APLUS-ACHIEVER-运营中心-备份.json';a.click();URL.revokeObjectURL(a.href)}
 function restore(){$('restoreFile').click()}$('restoreFile').onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.students||!x.courses)throw 0;db=x;save();alert('恢复成功')}catch(_){alert('备份文件格式不正确')}};r.readAsText(f)}
+
+/* 老师 Rate 运营增强：固定为默认，支持按人数、每节手动指定，并保存每节历史 */
+function opNormalize(c){
+ c.status=c.status||{};c.attendance=c.attendance||{};c.statusRate=c.statusRate||{};
+ c.students=Array.isArray(c.students)?c.students:(c.stu?[c.stu]:[]);
+ c.teacherRateMode=c.teacherRateMode||'fixed';c.teacherFee=Number(c.teacherFee||0);
+ c.teacherRates=Array.isArray(c.teacherRates)&&c.teacherRates.length?c.teacherRates:[{min:1,max:999,rate:c.teacherFee}];
+ return c
+}
+db.courses.forEach(opNormalize);
+function opSelectedStudents(){return [...$('cStu').selectedOptions].map(o=>o.value)}
+function opSetStudents(ids){let set=new Set(ids||[]);[...$('cStu').options].forEach(o=>o.selected=set.has(o.value))}
+function opAddRate(min,max,rate){let row=document.createElement('div');row.className='rateRow';row.innerHTML='<input class="opMin" type="number" min="1" placeholder="最少人数" value="'+(min||'')+'"><input class="opMax" type="number" min="1" placeholder="最多人数" value="'+(max||'')+'"><input class="opRate" type="number" min="0" step=".01" placeholder="S$ / 节" value="'+(rate??'')+'"><button type="button" class="danger" onclick="this.parentElement.remove()">删除</button>';$('opRateRows').appendChild(row)}
+function opGetRates(){return [...document.querySelectorAll('.rateRow')].map(r=>({min:+r.querySelector('.opMin').value,max:+r.querySelector('.opMax').value,rate:+r.querySelector('.opRate').value})).filter(x=>x.min>0&&x.max>=x.min)}
+function opRateUI(){
+ if($('cRateMode'))return;
+ let f=$('cTeacherFee').parentElement;
+ f.insertAdjacentHTML('afterend','<div class="field"><label>老师收费方式</label><select id="cRateMode" onchange="opToggleRate()"><option value="fixed">固定每节课</option><option value="tiered">按实际人数</option><option value="manual">每节手动指定</option></select></div><div class="field full" id="opRateWrap" style="display:none"><label>人数 Rate</label><div id="opRateRows"></div><button type="button" onclick="opAddRate()">＋ 增加人数档位</button><small style="display:block;margin-top:6px;color:var(--muted)">例如：1–1人 S$30、2–2人 S$40、3–4人 S$50、5–6人 S$70</small></div>');
+ $('cStu').multiple=true;$('cStu').size=5;
+}
+function opToggleRate(){if($('opRateWrap'))$('opRateWrap').style.display=$('cRateMode').value==='tiered'?'block':'none'}
+const opOldOpenCourse=openCourse;
+openCourse=function(){opOldOpenCourse();opRateUI();$('cRateMode').value='fixed';$('opRateRows').innerHTML='';opToggleRate();opSetStudents([])}
+const opOldEditCourse=editCourse;
+editCourse=function(id){
+ opOldEditCourse(id);opRateUI();let c=opNormalize(db.courses.find(x=>x.id===id));$('cRateMode').value=c.teacherRateMode;opSetStudents(c.students);$('opRateRows').innerHTML='';c.teacherRates.forEach(r=>opAddRate(r.min,r.max,r.rate));opToggleRate()
+}
+const opOldSaveCourse=saveCourse;
+saveCourse=function(){
+ let students=opSelectedStudents(),mode=$('cRateMode')?.value||'fixed',rates=opGetRates();
+ if(!students.length){alert('请至少选择一名学生');return}
+ if(mode==='tiered'&&!rates.length){alert('请至少设置一个人数 Rate');return}
+ let old=editingCourseId?opNormalize(db.courses.find(x=>x.id===editingCourseId)):null;
+ let oldStatus=old?.status||{},oldAtt=old?.attendance||{},oldRate=old?.statusRate||{};
+ opOldSaveCourse();
+ let c=editingCourseId?db.courses.find(x=>x.id===editingCourseId):db.courses[db.courses.length-1];
+ if(!c)return;
+ c.students=students;c.stu=students[0];c.teacherRateMode=mode;c.teacherRates=rates.length?rates:[{min:1,max:999,rate:Number(c.teacherFee||0)}];c.attendance=oldAtt;c.statusRate=oldRate;
+ Object.keys(oldStatus).forEach(d=>{if(c.dates.includes(d))c.status[d]=oldStatus[d]});
+ localStorage.setItem(KEY,JSON.stringify(db));render()
+}
+function opAttendance(c,date){return Array.isArray(c.attendance?.[date])?c.attendance[date]:c.students}
+function opLessonRate(c,date){let n=opAttendance(c,date).length;if(c.teacherRateMode==='manual')return Number(c.statusRate?.[date]??c.teacherFee??0);if(c.teacherRateMode==='tiered'){let r=(c.teacherRates||[]).find(x=>n>=x.min&&n<=x.max);return r?Number(r.rate||0):0}return Number(c.teacherFee||0)}
+function opTeacherTotal(c){return c.dates.reduce((s,d)=>s+(c.status[d]==='已上'?opLessonRate(c,d):0),0)}
+function opOpenAttendance(id,date){
+ let c=opNormalize(db.courses.find(x=>x.id===id)),box=document.querySelector('[data-op-att="'+id+'-'+date+'"]'),cur=opAttendance(c,date);
+ box.innerHTML='<div class="attendanceBox" style="margin-top:8px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fafbfc"><b>本节实际出席学生</b><div style="margin-top:6px">'+c.students.map(id=>'<label style="display:inline-flex;align-items:center;margin:4px 12px 4px 0"><input class="opAtt" type="checkbox" value="'+id+'" '+(cur.includes(id)?'checked':'')+'>'+esc(studentName(id))+'</label>').join('')+'</div><button class="primary" onclick="opSaveAttendance(\\''+id+'\\',\\''+date+'\\')">保存并标记已上</button></div>';box.style.display='block'
+}
+function opSaveAttendance(id,date){
+ let c=opNormalize(db.courses.find(x=>x.id===id)),box=document.querySelector('[data-op-att="'+id+'-'+date+'"]'),ids=[...box.querySelectorAll('.opAtt:checked')].map(x=>x.value);
+ if(!ids.length&&!confirm('本节没有学生出席，仍然标记已上吗？'))return;
+ c.attendance[date]=ids;
+ if(c.teacherRateMode==='manual'){let v=prompt('请输入本节老师费用（S$）',String(c.teacherFee||0));if(v===null)return;c.statusRate[date]=Number(v||0)}
+ c.status[date]='已上';save()
+}
+mark=function(id,date){
+ let c=opNormalize(db.courses.find(x=>x.id===id));if(c.status[date]==='已上'){if(confirm('确定把这节课改回未上吗？')){c.status[date]='未上';save()}return}opOpenAttendance(id,date)
+}
+const opRenderBase=render;
+render=function(){
+ db.courses.forEach(opNormalize);
+ let inc=db.courses.reduce((a,c)=>a+c.fee,0),tc=db.courses.reduce((a,c)=>a+opTeacherTotal(c),0);
+ opRenderBase();
+ if($('sTeacher'))$('sTeacher').textContent=money(tc);if($('fTeacher'))$('fTeacher').textContent=money(tc);if($('fMargin'))$('fMargin').textContent=money(inc-tc);
+ document.querySelectorAll('[data-op-att]').forEach(x=>{if(x.innerHTML&&x.style.display==='block'){}});
+}
+function opEnhanceCards(){
+ document.querySelectorAll('.lesson').forEach(el=>{
+  let btn=el.querySelector('.lessonAction');if(!btn)return;
+ });
+}
+const opOldLessonCard=lessonCard;
+lessonCard=function(x){
+ let c=opNormalize(x.c),date=x.date,done=c.status[date]==='已上',att=opAttendance(c,date),rate=done?opLessonRate(c,date):0;
+ let students=c.students.map(studentName).join('、');
+ return '<div class="lesson '+(done?'done':'')+'"><div class="lessonTime">'+c.time+'<small style="display:block;color:var(--muted);font-size:12px">'+c.endTime+' 结束</small></div><div class="lessonMain"><b>'+esc(c.name)+'</b><p>'+esc(students)+'　｜　老师：'+esc(teacherName(c.teacher))+'　｜　Zoom：'+esc(c.zoom||'—')+'</p><p>课时包：'+completed(c)+' 已上 / '+remaining(c)+' 剩余 / '+c.total+' 总计</p><div class="progress"><i style="width:'+Math.min(100,Math.round(completed(c)/c.total*100))+'%"></i></div><p style="font-size:12px;color:var(--muted)">老师 Rate：'+(c.teacherRateMode==='tiered'?'按人数':c.teacherRateMode==='manual'?'每节手动':'固定每节')+(done?'　｜　实际 '+att.length+' 人　｜　'+money(rate):'')+'</p><div data-op-att="'+c.id+'-'+date+'" style="display:none"></div></div><button class="lessonAction '+(done?'doneBtn':'primary')+'" onclick="mark(\\''+c.id+'\\',\\''+date+'\\')">'+(done?'✓ 已上':'标记已上')+'</button></div>'
+}
+const opOldConflicts=conflicts;
+conflicts=function(){
+ let a=allLessons(),out=[];for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++){let x=a[i],y=a[j];if(x.date!==y.date)continue;let overlap=x.c.time<y.c.endTime&&y.c.time<x.c.endTime,xs=opNormalize(x.c).students,ys=opNormalize(y.c).students,same=xs.some(id=>ys.includes(id));if(overlap&&(same||x.c.teacher===y.c.teacher))out.push({x,y,reason:same?'学生时间冲突':'老师时间冲突'})}return out
+}
+opRateUI();
 render();
+
 </script>
 </body></html>
