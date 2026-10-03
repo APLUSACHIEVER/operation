@@ -319,7 +319,7 @@ function printSettlement(){
   let html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>老师结算明细</title><style>body{font-family:Arial,"Microsoft YaHei";padding:30px}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}th{background:#f5f7fa}.total{margin-top:18px;font-size:18px;font-weight:700}</style></head><body><h1>APLUS ACHIEVER 老师结算明细</h1><p>老师：'+esc(tn)+'　｜　期间：'+esc(s||'不限')+' ～ '+esc(e||'不限')+'</p><table><thead><tr><th>日期</th><th>课程</th><th>科目</th><th>学生</th><th>实际出席</th><th>老师 Rate</th><th>本节费用</th></tr></thead><tbody>'+rows.map(x=>'<tr><td>'+x.date+'</td><td>'+esc(x.c.name)+'</td><td>'+esc(subjectName(x.c.subject))+'</td><td>'+esc(x.students)+'</td><td>'+x.att.length+' 人</td><td>'+money(x.rate)+'</td><td>'+money(x.rate)+'</td></tr>').join('')+'</tbody></table><div class="total">实际已上：'+rows.length+' 节　｜　老师费用合计：'+money(total)+'</div><script>window.onload=function(){window.print()}<\/script></body></html>';
   let w=window.open('','_blank');if(!w)return alert('浏览器阻止了弹窗，请允许新窗口后再试。');w.document.write(html);w.document.close()
 }
-function closeModal(id){$(id)?.remove()}
+function closeModal(id){let el=$(id);if(!el)return;if(id==='memberModal')el.remove();else el.classList.remove('show')}
 function renderAll(){
   db.courses.forEach(migrateCourse);
   if(!$('filterDate').value)$('filterDate').value=today();
