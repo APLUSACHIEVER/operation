@@ -381,5 +381,38 @@ render=function(){opRenderWithSettlement();renderTeacherSettlement();};
 renderTeacherSettlement();
 render();
 
+
+/* 学生独立课时包 / 收费 */
+function opEnsurePackages(c){
+ opMemberList(c);
+ c.members.forEach(m=>{if(m.total===undefined)m.total=Number(c.total||0);if(m.fee===undefined)m.fee=Number(c.fee||0);if(!m.status)m.status='active';});
+ return c.members;
+}
+function opMemberUsed(c,m){return c.dates.filter(d=>c.status[d]==='已上'&&m.joinDate<=d&&(!m.leaveDate||m.leaveDate>=d)).length}
+function opMemberRemaining(c,m){return Math.max(0,Number(m.total||0)-opMemberUsed(c,m))}
+function opCourseRevenue(c){return opEnsurePackages(c).reduce((s,m)=>s+Number(m.fee||0),0)}
+function opStudentPackages(sid){let out=[];db.courses.forEach(c=>opEnsurePackages(c).forEach(m=>{if(m.id===sid)out.push({c,m,used:opMemberUsed(c,m),remaining:opMemberRemaining(c,m)})}));return out}
+opMemberManager=function(id){
+ let c=opNormalize(db.courses.find(x=>x.id===id));opEnsurePackages(c);
+ let rows=c.members.map(m=>{let used=opMemberUsed(c,m),rem=opMemberRemaining(c,m);return '<tr><td><b>'+esc(studentName(m.id))+'</b></td><td><input class="memJoin" data-id="'+m.id+'" type="date" value="'+(m.joinDate||c.start||'')+'"></td><td><input class="memLeave" data-id="'+m.id+'" type="date" value="'+(m.leaveDate||'')+'"></td><td><input class="memTotal" data-id="'+m.id+'" type="number" min="0" value="'+Number(m.total||0)+'"></td><td><input class="memFee" data-id="'+m.id+'" type="number" min="0" step=".01" value="'+Number(m.fee||0)+'"></td><td>'+used+' / '+rem+'</td><td><button class="danger" onclick="opRemoveMember(\\''+id+'\\',\\''+m.id+'\\')">退出</button></td></tr>'}).join('');
+ let opts=db.students.filter(st=>!c.members.some(m=>m.id===st.id&&!m.leaveDate)).map(st=>'<option value="'+st.id+'">'+esc(st.name)+'</option>').join('');
+ let box=document.createElement('div');box.className='modal show';
+ box.innerHTML='<div class="box" style="width:min(1050px,100%)"><h2>课程学生成员 / 独立课时包</h2><p style="color:var(--muted)">每个学生独立记录加入日期、退出日期、课时包总数和收费。</p><div style="overflow:auto"><table class="table"><tr><th>学生</th><th>加入日期</th><th>退出日期</th><th>课时包</th><th>收费</th><th>已用 / 剩余</th><th></th></tr>'+rows+'</table></div><div class="form" style="margin-top:14px"><div class="field"><label>新增学生</label><select id="opNewMember">'+opts+'</select></div><div class="field"><label>加入日期</label><input id="opNewMemberDate" type="date" value="'+today()+'"></div><div class="field"><label>课时包</label><input id="opNewMemberTotal" type="number" min="1" value="'+Number(c.total||10)+'"></div><div class="field"><label>收费（S$）</label><input id="opNewMemberFee" type="number" min="0" step=".01" value="'+Number(c.fee||0)+'"></div></div><div class="actions"><button onclick="this.closest(\\'.modal\\').remove()">关闭</button><button class="primary" onclick="opAddMemberPackage(\\''+id+'\\',this)">＋ 加入学生</button><button class="primary" onclick="opSaveMemberPackages(\\''+id+'\\',this)">保存成员资料</button></div></div>';
+ document.body.appendChild(box);
+};
+function opAddMemberPackage(id,btn){let c=opNormalize(db.courses.find(x=>x.id===id));opEnsurePackages(c);let sid=$('opNewMember').value,date=$('opNewMemberDate').value,total=Number($('opNewMemberTotal').value||0),fee=Number($('opNewMemberFee').value||0);if(!sid||!date||total<=0){alert('请选择学生，并填写加入日期和课时包');return}if(c.members.some(m=>m.id===sid&&!m.leaveDate)){alert('该学生已经是当前成员');return}c.members.push({id:sid,joinDate:date,leaveDate:'',total,fee,status:'active'});c.students=opActiveMembers(c,today()).map(m=>m.id);localStorage.setItem(KEY,JSON.stringify(db));btn.closest('.modal').remove();render()}
+function opSaveMemberPackages(id,btn){let c=opNormalize(db.courses.find(x=>x.id===id));opEnsurePackages(c);document.querySelectorAll('.memJoin').forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m&&el.value)m.joinDate=el.value});document.querySelectorAll('.memLeave').forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m)m.leaveDate=el.value});document.querySelectorAll('.memTotal').forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m)m.total=Number(el.value||0)});document.querySelectorAll('.memFee').forEach(el=>{let m=c.members.find(x=>x.id===el.dataset.id);if(m)m.fee=Number(el.value||0)});for(let m of c.members){if(m.leaveDate&&m.leaveDate<m.joinDate){alert(studentName(m.id)+' 的退出日期不能早于加入日期');return}}c.students=opActiveMembers(c,today()).map(m=>m.id);localStorage.setItem(KEY,JSON.stringify(db));btn.closest('.modal').remove();render()}
+const opRenderPackageBase=render;
+render=function(){opRenderPackageBase();opRenderPackages()};
+function opRenderPackages(){
+ db.courses.forEach(opEnsurePackages);
+ let inc=db.courses.reduce((a,c)=>a+opCourseRevenue(c),0),tc=db.courses.reduce((a,c)=>a+opTeacherTotal(c),0);
+ if($('sIncome'))$('sIncome').textContent=money(inc);if($('fIncome'))$('fIncome').textContent=money(inc);if($('fMargin'))$('fMargin').textContent=money(inc-tc);
+ if($('studentList'))$('studentList').innerHTML=db.students.length?'<table class="table"><thead><tr><th>学生</th><th>课程</th><th>剩余课时</th><th>课时包费用</th><th>操作</th></tr></thead><tbody>'+db.students.map(s=>{let ps=opStudentPackages(s.id);return '<tr><td><b>'+esc(s.name)+'</b></td><td>'+ps.length+' 门</td><td>'+ps.reduce((a,x)=>a+x.remaining,0)+'</td><td>'+money(ps.reduce((a,x)=>a+Number(x.m.fee||0),0))+'</td><td><button onclick="editStudent(\\''+s.id+'\\')">修改</button> <button class="danger" onclick="deleteStudent(\\''+s.id+'\\')">删除</button></td></tr>'}).join('')+'</tbody></table>':'<div class="empty">还没有学生</div>';
+ if($('courseCards'))$('courseCards').innerHTML=db.courses.length?db.courses.map(c=>{let members=opEnsurePackages(c),revenue=opCourseRevenue(c),tc=opTeacherTotal(c),margin=revenue-tc;return '<div class="course"><h3>'+esc(c.name)+'</h3><p>老师：'+esc(teacherName(c.teacher))+'　｜　学生：'+members.length+' 人</p><p>时间：'+c.time+'–'+c.endTime+'　｜　Zoom：'+esc(c.zoom||'—')+'</p><p>学生课时包：'+members.map(m=>esc(studentName(m.id))+' '+opMemberUsed(c,m)+' 已用 / '+opMemberRemaining(c,m)+' 剩余 · '+money(m.fee)).join('　｜　')+'</p><p>学生收费合计：<span class="money">'+money(revenue)+'</span>　老师已产生费用：'+money(tc)+'　差额：'+money(margin)+'</p><div class="actions"><button onclick="opMemberManager(\\''+c.id+'\\')">学生课时包</button> <button class="primary" onclick="editCourse(\\''+c.id+'\\')">修改课程</button></div></div>'}).join(''):'<div class="empty">还没有课程</div>';
+ if($('feeBody'))$('feeBody').innerHTML=db.courses.flatMap(c=>{let revenue=opCourseRevenue(c),tc=opTeacherTotal(c);return opEnsurePackages(c).map(m=>{let used=opMemberUsed(c,m),rem=opMemberRemaining(c,m),share=revenue?Number(m.fee||0)/revenue:0;return '<tr><td>'+esc(c.name)+'</td><td>'+esc(studentName(m.id))+'</td><td>'+esc(teacherName(c.teacher))+'</td><td>'+esc(subjectName(c.subject))+'</td><td>'+used+' / '+Number(m.total||0)+'（剩 '+rem+'）</td><td>'+money(m.fee)+'</td><td>'+money(tc*share)+'</td><td>'+money(Number(m.fee||0)-tc*share)+'</td></tr>'})}).join('')||'<tr><td colspan="8" class="empty">还没有费用记录</td></tr>';
+}
+db.courses.forEach(c=>opEnsurePackages(c));localStorage.setItem(KEY,JSON.stringify(db));render();
+
 </script>
 </body></html>
