@@ -95,6 +95,10 @@ function fillTeachers(){$('cTeacher').innerHTML='<option value="">请选择老�
 function fillSubjects(){$('cSubject').innerHTML='<option value="">请选择科目</option>'+db.subjects.map(s=>'<option value="'+s.id+'">'+esc(s.name)+(s.level?' · '+esc(s.level):'')+'</option>').join('')}
 function teacherName(id){return db.teachers.find(t=>t.id===id)?.name||id||'—'}
 function subjectName(id){return db.subjects.find(s=>s.id===id)?.name||id||'—'}
+function openStudent(){editingStudentId=null;$('studentModalTitle').textContent='新增学生';$('stuName').value='';$('studentModal').classList.add('show')}
+function editStudent(id){let s=db.students.find(x=>x.id===id);if(!s)return;editingStudentId=id;$('studentModalTitle').textContent='修改学生';$('stuName').value=s.name||'';$('studentModal').classList.add('show')}
+function deleteStudent(id){if(db.courses.some(c=>opNormalize(c).members?.some(m=>m.id===id&&!m.leaveDate)||c.students?.includes(id)||c.stu===id)){alert('该学生已有课程记录，不能直接删除。请先在课程的“学生课时包”中退出该学生。');return}if(!confirm('确定删除这名学生吗？'))return;db.students=db.students.filter(s=>s.id!==id);save()}
+function saveStudent(){let n=$('stuName').value.trim();if(!n){alert('请输入学生姓名');return}if(editingStudentId){let s=db.students.find(x=>x.id===editingStudentId);if(s)s.name=n}else db.students.push({id:uid(),name:n});closeModal('studentModal');save()}
 function openTeacher(){editingTeacherId=null;$('teacherName').value='';$('teacherModal').classList.add('show')}
 function editTeacher(id){let t=db.teachers.find(x=>x.id===id);if(!t)return;editingTeacherId=id;$('teacherName').value=t.name;$('teacherModal').classList.add('show')}
 function deleteTeacher(id){if(db.courses.some(c=>c.teacher===id)){alert('该老师已有课程，不能删除。请先修改或删除相关课程。');return}if(!confirm('确定删除这名老师吗？'))return;db.teachers=db.teachers.filter(t=>t.id!==id);save()}
