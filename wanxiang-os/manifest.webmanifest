@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "万象 OS｜个人数字工具箱",
+  "short_name": "万象 OS",
+  "description": "你的数字世界，由你定义。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090c12",
+  "theme_color": "#090c12",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
