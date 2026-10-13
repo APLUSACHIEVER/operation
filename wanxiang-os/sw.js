@@ -1,4 +1,4 @@
-const CACHE_NAME = "wanxiang-os-v3";
+const CACHE_NAME = "wanxiang-os-v4";
 const APP_SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", event => {
